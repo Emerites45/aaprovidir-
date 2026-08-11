@@ -1,0 +1,145 @@
+.section {
+  background: var(--color-off-white);
+  padding: 90px 5%;
+}
+.header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+.header h1 {
+  font-weight: 700;
+  font-size: 2.8rem;
+  color: var(--color-blue-corporate);
+}
+.header span {
+  color: #0062cc;
+}
+.inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+.text {
+  flex: 0 0 320px;
+}
+.counter {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--color-blue-corporate);
+  margin-bottom: 25px;
+}
+.sep {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: var(--color-dark-gray);
+  margin-left: 4px;
+}
+.slideBox {
+  min-height: 140px;
+  margin-bottom: 30px;
+}
+.slideBox h3 {
+  font-weight: 700;
+  font-size: 1.8rem;
+  color: var(--color-blue-corporate);
+  margin-bottom: 15px;
+}
+.slideBox p {
+  color: var(--color-dark-gray);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+.nav {
+  display: flex;
+  gap: 12px;
+}
+.arrow {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-light-gray);
+  background: white;
+  color: var(--color-blue-corporate);
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
+}
+.arrow:hover:not(:disabled) {
+  background: var(--color-blue-corporate);
+  color: white;
+  border-color: var(--color-blue-corporate);
+}
+.arrow:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+.images {
+  flex: 1;
+  display: flex;
+  gap: 10px;
+  height: 480px;
+}
+.item {
+  flex: 1;
+  border-radius: 20px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  border: none;
+  padding: 0;
+  transition: flex-grow 0.6s ease;
+}
+.itemActive {
+  flex-grow: 4;
+}
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(180deg, rgba(13, 44, 84, 0) 40%, rgba(13, 44, 84, 0.55) 100%);
+  opacity: 0;
+  transition: opacity 0.5s ease 0.15s;
+}
+.itemActive .overlay {
+  opacity: 1;
+}
+.overlay h4 {
+  font-weight: 700;
+  font-size: 1.8rem;
+  color: white;
+  margin-bottom: 5px;
+}
+.btn {
+  margin-top: 20px;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: 1.5px solid white;
+  border-radius: 30px;
+  padding: 10px 26px;
+}
+@media (max-width: 992px) {
+  .inner {
+    flex-direction: column;
+    gap: 30px;
+  }
+  .text {
+    flex: none;
+    width: 100%;
+  }
+  .images {
+    width: 100%;
+    height: 380px;
+  }
+}

@@ -1,0 +1,96 @@
+.footer {
+  background-color: var(--color-blue-corporate);
+  color: var(--color-off-white);
+  position: relative;
+}
+.tower {
+  width: 100%;
+  line-height: 0;
+  background: #ffffff;
+}
+.tower svg {
+  display: block;
+  width: 100%;
+  height: 140px;
+}
+.main {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 60px 5% 40px;
+  display: flex;
+  justify-content: space-between;
+  gap: 60px;
+  flex-wrap: wrap;
+}
+.brand {
+  max-width: 320px;
+}
+.logo {
+  width: 180px;
+  height: auto;
+  margin-bottom: 18px;
+}
+.social {
+  display: flex;
+  gap: 12px;
+}
+.social img {
+  width: 30px;
+  height: 30px;
+}
+.links {
+  display: flex;
+  gap: 60px;
+  flex-wrap: wrap;
+}
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 150px;
+}
+.col h4 {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--color-yellow-action);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.col a {
+  font-size: 0.9rem;
+  color: var(--color-pale-cyan);
+  text-decoration: none;
+}
+.col a:hover {
+  color: var(--color-off-white);
+  text-decoration: underline;
+}
+.bottom {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px 5% 32px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.bottom p {
+  font-size: 0.85rem;
+  color: var(--color-pale-cyan);
+}
+.legal {
+  display: flex;
+  gap: 24px;
+}
+.legal a {
+  font-size: 0.85rem;
+  color: var(--color-pale-cyan);
+  text-decoration: none;
+}
+.legal a:hover {
+  color: var(--color-off-white);
+  text-decoration: underline;
+}
