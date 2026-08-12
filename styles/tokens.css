@@ -1,0 +1,34 @@
+/* ==========================================================================
+   Design tokens Aaprovidir
+   Source unique de vérité pour les couleurs, fonts, etc.
+   Ne PAS redéfinir ces variables dans un composant ou une section :
+   toujours consommer via var(--...).
+   ========================================================================== */
+:root {
+  /* Couleurs primaires */
+  --color-blue-corporate: #0d2c54;
+  --color-cyan-innovation: #2a9d8f;
+  --color-green-guardian: #388e3c;
+  --color-yellow-action: #e9c46a;
+
+  /* Couleurs secondaires & neutres */
+  --color-off-white: #f8f7f4;
+  --color-light-gray: #e0e0e0;
+  --color-dark-gray: #424242;
+  --color-pale-blue: #d0dcf0;
+  --color-pale-cyan: #c8f0ec;
+  --color-pale-green: #d6f0d7;
+  --color-pale-yellow: #fdf5dc;
+
+  --bg-dark: var(--color-blue-corporate);
+  --card-dark: #14335e;
+  --accent: var(--color-cyan-innovation);
+  --accent-orange: var(--color-yellow-action);
+  --glass-bg: rgba(255, 255, 255, 0.15);
+  --glass-border: rgba(255, 255, 255, 0.3);
+  --card-light: var(--color-pale-blue);
+
+  --font-title: "Linotte", Arial, Helvetica, sans-serif;
+  --font-body: "Plus Jakarta Sans", Arial, sans-serif;
+  --font-accent: "Poppins", "Inter", -apple-system, sans-serif;
+}
