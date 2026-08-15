@@ -1,5 +1,9 @@
 .header {
-  background: #bce1ff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
   padding: 20px 5% 0;
 }
 
@@ -13,6 +17,7 @@
   justify-content: space-between;
   padding: 10px 10px 10px 30px;
   box-shadow: 0 4px 15px rgba(13, 44, 84, 0.06);
+  backdrop-filter: blur(10px);
 }
 
 .logo img {
