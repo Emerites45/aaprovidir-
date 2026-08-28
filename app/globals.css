@@ -1,6 +1,25 @@
 @import "tailwindcss";
 @import "../styles/tokens.css";
 
+/* ==========================================================================
+   Polices auto-hébergées — fontes variables (un fichier = toutes les graisses)
+   ========================================================================== */
+@font-face {
+  font-family: "Google Sans";
+  src: url("/fonts/GoogleSans-Variable.ttf") format("truetype-variations");
+  font-weight: 300 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Google Sans";
+  src: url("/fonts/GoogleSans-Italic-Variable.ttf") format("truetype-variations");
+  font-weight: 300 800;
+  font-style: italic;
+  font-display: swap;
+}
+
 /* Mappe les tokens Aaprovidir sur les variables attendues par shadcn,
    pour que les composants "default/secondary/outline" adoptent aussi
    l'identité de marque sans rien redéfinir dans chaque fichier. */
@@ -21,6 +40,11 @@
   --color-destructive: #d32f2f;
   --color-destructive-foreground: #ffffff;
   --radius: 0.75rem;
+
+  /* Expose les tokens de police à Tailwind : font-title, font-body, font-accent */
+  --font-title: var(--font-title);
+  --font-body: var(--font-body);
+  --font-accent: var(--font-accent);
 }
 
 @layer base {
@@ -32,12 +56,34 @@
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 110px;
+    -webkit-text-size-adjust: 100%;
   }
   body {
     background-color: #ffffff;
     color: var(--color-dark-gray);
     font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
     overflow-x: hidden;
+  }
+  img,
+  svg,
+  video {
+    display: block;
+    max-width: 100%;
+  }
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  button {
+    font: inherit;
+    cursor: pointer;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-cyan-innovation);
+    outline-offset: 3px;
   }
 }
 
@@ -92,5 +138,13 @@
 @media (prefers-reduced-motion: reduce) {
   .shine-effect::after {
     animation: none;
+  }
+  .reveal-item {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  html {
+    scroll-behavior: auto;
   }
 }

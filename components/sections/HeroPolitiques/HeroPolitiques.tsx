@@ -49,7 +49,7 @@ export function HeroPolitiques() {
         <img
           src="/images/enfant.png"
           alt="Deux enfants marchant sur un chemin de plantation"
-          className="relative left-[-200px] bottom-[190px] z-20 mx-auto h-[120%] w-auto object-contain object-bottom"
+          className="absolute bottom-0 left-1/2 z-20 h-[90%] w-auto -translate-x-1/2 object-contain object-bottom"
         />
 
         <h1 className="sr-only">Avenir radieux — Bright future</h1>
