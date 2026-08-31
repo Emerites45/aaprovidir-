@@ -5,7 +5,7 @@ export function ZacheeIntro() {
       style={{ backgroundImage: "url('/images/background-zachee-1.png')" }}
     >
       <div className="flex h-[10vh] items-center justify-center rounded-b-[15px] bg-[#f3fff8]">
-        <p className="bg-gradient-to-b from-[#8ac6da] via-[#c2dee7] to-[#fafbf3] bg-clip-text text-center font-accent text-[clamp(1.1rem,3vw,32px)] font-semibold uppercase tracking-[0.05em] text-transparent">
+        <p className="text-center font-accent text-[clamp(1.1rem,3vw,32px)] font-semibold uppercase tracking-[0.05em] text-[#8ac6da]">
           Pourquoi nous nous levons chaque matin ?
         </p>
       </div>

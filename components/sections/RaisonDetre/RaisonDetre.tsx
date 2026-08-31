@@ -38,45 +38,78 @@ const SLIDES: Slide[] = [
   },
 ];
 
-const BG = "url('/images/background-raison.png')";
+/** Adoucit une valeur 0→1 : départ et arrivée sans à-coup. */
+function smooth(t: number) {
+  const x = Math.min(Math.max(t, 0), 1);
+  return x * x * (3 - 2 * x);
+}
+
+/** Position verticale (en %) d'une diapo selon sa progression locale. */
+function slideY(d: number, isLast: boolean) {
+  if (d <= 0) return 100;
+  if (d < 0.32) return 100 - 100 * smooth(d / 0.32);
+  if (d < 0.72) return 0;
+  if (isLast) return 0;
+  if (d < 1) return -130 * smooth((d - 0.72) / 0.28);
+  return -130;
+}
 
 export function RaisonDetre() {
   const wrapperRef = useRef<HTMLDivElement>(null);
+  const targetRef = useRef(0);
+  const rafRef = useRef<number | null>(null);
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    const onScroll = () => {
+    const read = () => {
       const el = wrapperRef.current;
       if (!el) return;
       const distance = el.offsetHeight - window.innerHeight;
       if (distance <= 0) return;
       const p = -el.getBoundingClientRect().top / distance;
-      setProgress(Math.min(Math.max(p, 0), 1));
+      targetRef.current = Math.min(Math.max(p, 0), 1);
     };
 
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
+    const tick = () => {
+      setProgress((current) => {
+        const next = current + (targetRef.current - current) * 0.12;
+        return Math.abs(targetRef.current - next) < 0.0002
+          ? targetRef.current
+          : next;
+      });
+      rafRef.current = requestAnimationFrame(tick);
+    };
+
+    read();
+    setProgress(targetRef.current);
+    rafRef.current = requestAnimationFrame(tick);
+
+    window.addEventListener("scroll", read, { passive: true });
+    window.addEventListener("resize", read);
     return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      window.removeEventListener("scroll", read);
+      window.removeEventListener("resize", read);
     };
   }, []);
 
-  const active = Math.min(
-    Math.floor(progress * SLIDES.length),
-    SLIDES.length - 1
-  );
+  const t = progress * SLIDES.length;
+  const active = Math.min(Math.floor(t), SLIDES.length - 1);
 
   return (
     <section>
-      <div
-        className="bg-cover bg-center bg-no-repeat lg:hidden"
-        style={{ backgroundImage: BG }}
-      >
-        {SLIDES.map((slide) => (
-          <SlideContent key={slide.id} slide={slide} visible />
-        ))}
+      <div className="relative bg-[linear-gradient(to_right,#006af1,#80e9f9)] lg:hidden">
+        <img
+          src="/images/montagne.png"
+          alt=""
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 bottom-0 z-0 w-full select-none"
+        />
+        <div className="relative z-10">
+          {SLIDES.map((slide) => (
+            <SlideContent key={slide.id} slide={slide} />
+          ))}
+        </div>
       </div>
 
       <div
@@ -84,15 +117,29 @@ export function RaisonDetre() {
         className="hidden lg:block"
         style={{ height: `${SLIDES.length * 100}vh` }}
       >
-        <div
-          className="sticky top-0 h-screen overflow-hidden bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: BG }}
-        >
-          {SLIDES.map((slide, i) => (
-            <div key={slide.id} className="absolute inset-0">
-              <SlideContent slide={slide} visible={i === active} />
-            </div>
-          ))}
+        <div className="sticky top-0 h-screen overflow-hidden bg-[linear-gradient(to_right,#006af1,#80e9f9)]">
+          {SLIDES.map((slide, i) => {
+            const y = slideY(t - i, i === SLIDES.length - 1);
+            return (
+              <div
+                key={slide.id}
+                className="absolute inset-0 z-10 will-change-transform"
+                style={{
+                  transform: `translate3d(0, ${y}%, 0)`,
+                  pointerEvents: y === 0 ? "auto" : "none",
+                }}
+              >
+                <SlideContent slide={slide} />
+              </div>
+            );
+          })}
+
+          <img
+            src="/images/montagne.png"
+            alt=""
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 z-30 h-full w-full select-none object-cover object-bottom"
+          />
 
           <div className="absolute bottom-10 left-1/2 z-40 flex -translate-x-1/2 gap-3">
             {SLIDES.map((slide, i) => (
@@ -110,15 +157,9 @@ export function RaisonDetre() {
   );
 }
 
-function SlideContent({ slide, visible }: { slide: Slide; visible: boolean }) {
+function SlideContent({ slide }: { slide: Slide }) {
   return (
-    <div
-      className={`flex h-full flex-col justify-start px-[5%] pt-[70px] transition-all duration-700 ease-out lg:pt-[80px] ${
-        visible
-          ? "pointer-events-auto translate-y-0 opacity-100"
-          : "pointer-events-none translate-y-16 opacity-0"
-      }`}
-    >
+    <div className="flex h-full flex-col justify-start px-[5%] pt-[70px] lg:pt-[80px]">
       <div className="mx-auto w-full max-w-[1400px]">
         <div className="mb-6 mt-8 flex items-center gap-5 lg:mb-16 lg:mt-12">
           <span className="flex h-12 w-12 items-center justify-center rounded-full bg-[#ffca3c] font-title text-xl font-bold text-white ring-4 ring-white/80 lg:h-14 lg:w-14 lg:text-2xl">
