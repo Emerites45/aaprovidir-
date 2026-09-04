@@ -28,7 +28,8 @@
   --glass-border: rgba(255, 255, 255, 0.3);
   --card-light: var(--color-pale-blue);
 
-  --font-title: "Linotte", Arial, Helvetica, sans-serif;
-  --font-body: "Plus Jakarta Sans", Arial, sans-serif;
-  --font-accent: "Poppins", "Inter", -apple-system, sans-serif;
+  --font-title: "Google Sans", sans-serif;
+  --font-body: "Google Sans", sans-serif;
+  --font-accent: "Google Sans", sans-serif;
+  --font-script: "Benedict", cursive;
 }

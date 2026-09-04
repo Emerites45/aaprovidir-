@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Header } from "@/components/layout/Header/Header";
 import { Footer } from "@/components/layout/Footer/Footer";
+import { SmoothScroll } from "@/components/layout/SmoothScroll";
+import "devices.css";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -17,6 +19,7 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body>
+        <SmoothScroll />
         <Header />
         {children}
         <Footer />

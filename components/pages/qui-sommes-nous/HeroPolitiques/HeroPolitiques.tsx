@@ -31,9 +31,8 @@ export function HeroPolitiques() {
                   key={offset}
                   className="font-title"
                   fill="#f3fff8"
-                  fontSize="44"
+                  fontSize="64"
                   fontWeight="700"
-                  letterSpacing="4"
                   textAnchor="start"
                 >
                   <textPath href="#arc-hero" startOffset={offset}>

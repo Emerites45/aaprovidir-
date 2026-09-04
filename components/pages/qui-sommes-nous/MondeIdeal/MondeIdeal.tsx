@@ -90,9 +90,9 @@ export function MondeIdeal() {
   const shift = progress * (PANELS.length - 1) * 100;
 
   return (
-    <section>
+    <section >
       <div
-        className="bg-cover bg-center bg-no-repeat lg:hidden"
+        className="my-[14px] overflow-hidden rounded-[22px] bg-cover bg-center bg-no-repeat lg:hidden"
         style={{ backgroundImage: BG }}
       >
         {PANELS.map((panel) => (
@@ -106,7 +106,7 @@ export function MondeIdeal() {
         style={{ height: `${PANELS.length * 100}vh` }}
       >
         <div
-          className="sticky top-0 h-screen overflow-hidden bg-cover bg-center bg-no-repeat pt-[95px]"
+          className="sticky top-[14px] h-[calc(100vh_-_28px)] overflow-hidden rounded-[22px] bg-cover bg-center bg-no-repeat pt-[95px]"
           style={{ backgroundImage: BG }}
         >
           <svg
@@ -235,7 +235,7 @@ function PanelContent({ panel }: { panel: Panel }) {
               />
             </svg>
 
-            <span className="absolute bottom-[20px] left-0 z-30 rounded-2xl bg-gradient-to-b from-[#3d6ca8] to-[#1e4d8c] px-6 py-3 font-accent text-lg italic text-white shadow-[0_6px_0_0_#153a6b,0_10px_18px_rgba(0,0,0,0.28)] ring-1 ring-white/40 lg:px-8 lg:text-xl">
+            <span style={{ fontFamily: "var(--font-script)" }} className="absolute bottom-[20px] left-0 z-30 rounded-2xl bg-gradient-to-b from-[#3d6ca8] to-[#1e4d8c] px-6 py-3 font-accent text-white shadow-[0_6px_0_0_#153a6b,0_10px_18px_rgba(0,0,0,0.28)] ring-1 ring-white/40 lg:px-8 lg:text-xl">
               {panel.label}
             </span>
 
