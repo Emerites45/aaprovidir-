@@ -13,7 +13,7 @@ export function ZacheeQuote() {
       <div className="max-w-[1250px] -translate-y-[11vh] text-center text-[clamp(22px,2.2vw,42px)] font-bold leading-snug text-[#0b438c] lg:leading-relaxed">
         <p>
           Une nuit de novembre 2019, sur la piste de Biyombulu, un vieux planteur
-          nous a regardés droit dans les yeux et nous a dit :
+          nous a regardé droit dans les yeux et nous a dit :
         </p>
 
         <blockquote className="mt-5 italic lg:mt-7">
