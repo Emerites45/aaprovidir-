@@ -28,7 +28,7 @@ const CARDS: CardItem[] = [
       "Structurer les producteurs en coopératives autonomes, financer les mini-unités de transformation et garantir une traçabilité totale, de la terre à l'assiette.",
     image: "/images/images5.jpeg",
     alt: "Chef consultant une tablette en cuisine",
-    offset: 56,
+    offset: 46,
   },
   {
     id: "valeurs",
@@ -37,7 +37,7 @@ const CARDS: CardItem[] = [
       "Bâtir un écosystème où chaque maillon gagne en dignité et en valeur, et où chaque échange repose sur une confiance adossée à la donnée.",
     image: "/images/restaurant.jpg",
     alt: "Technicien contrôlant la qualité des grains",
-    offset: 112,
+    offset: 92,
   },
   {
     id: "engagement",
@@ -46,24 +46,37 @@ const CARDS: CardItem[] = [
       "Des standards de qualité fiables et éthiques, des délais tenus, et une marge que le producteur comprend et négocie — jamais subie.",
     image: "/images/images6.jpeg",
     alt: "Poignée de main dans un champ au coucher du soleil",
-    offset: 160,
+    offset: 138,
   },
 ];
 
-const CARD_W = 340;
-const GAP = 32;
+/** Courbe ease-out-expo : arrivée très progressive, masque les micro-saccades. */
+const EASE = "cubic-bezier(0.16,1,0.3,1)";
+const DURATION = 1250;
 
 export function RacinesAiles() {
   const trackRef = useRef<HTMLDivElement>(null);
+  const hoverTimer = useRef<number | null>(null);
   const [index, setIndex] = useState(0);
   const [maxIndex, setMaxIndex] = useState(0);
   const [hovered, setHovered] = useState<string | null>(null);
+  const [dims, setDims] = useState({ card: 260, gap: 24, imgH: 420 });
 
   useEffect(() => {
     const measure = () => {
       const viewport = trackRef.current?.parentElement;
       if (!viewport) return;
-      const visible = Math.max(1, Math.floor(viewport.offsetWidth / (CARD_W + GAP)));
+
+      const h = window.innerHeight;
+      const w = window.innerWidth;
+
+      const imgH = Math.max(320, Math.min(h * 0.62, 580));
+      const card = Math.max(290, Math.min(w * 0.235, 400));
+      const gap = w < 1024 ? 18 : 24;
+
+      setDims({ card, gap, imgH });
+
+      const visible = Math.max(1, Math.floor(viewport.offsetWidth / (card + gap)));
       const max = Math.max(0, CARDS.length - visible);
       setMaxIndex(max);
       setIndex((i) => Math.min(i, max));
@@ -74,27 +87,43 @@ export function RacinesAiles() {
     return () => window.removeEventListener("resize", measure);
   }, []);
 
+  useEffect(() => {
+    return () => {
+      if (hoverTimer.current) window.clearTimeout(hoverTimer.current);
+    };
+  }, []);
+
+  const enter = (id: string) => {
+    if (hoverTimer.current) window.clearTimeout(hoverTimer.current);
+    hoverTimer.current = window.setTimeout(() => setHovered(id), 110);
+  };
+
+  const leave = () => {
+    if (hoverTimer.current) window.clearTimeout(hoverTimer.current);
+    hoverTimer.current = window.setTimeout(() => setHovered(null), 90);
+  };
+
   return (
     <section
-      className="relative overflow-hidden bg-[#f2f2ee] bg-cover bg-center bg-no-repeat py-20 lg:py-28"
+      className="relative my-[14px] overflow-hidden rounded-[22px] bg-[#f2f2ee] bg-cover bg-center bg-no-repeat py-12 lg:py-20"
       style={{ backgroundImage: "url('/images/background-racines.png')" }}
     >
-      <div className="flex flex-col gap-12 px-[5%] lg:flex-row lg:items-start lg:gap-14 lg:pl-[6%] lg:pr-0">
-        <div className="shrink-0 lg:w-[280px] lg:pt-4">
-          <h2 className="mb-8 font-title text-[34px] font-bold leading-tight text-[#0b438c]">
+      <div className="flex flex-col gap-10 px-[5%] lg:flex-row lg:items-start lg:gap-12 lg:pl-[5%] lg:pr-0">
+        <div className="shrink-0 lg:w-[250px] lg:pt-4">
+          <h2 className="mb-5 font-title text-[clamp(26px,3.4vh,34px)] font-bold leading-tight text-[#0b438c] lg:mb-7">
             Nos racines
             <br />
             et nos ailes
           </h2>
 
-          <p className="mb-10 font-body text-[17px] leading-relaxed text-[#3a3a3a]">
+          <p className="mb-7 font-body text-[clamp(14px,1.9vh,17px)] leading-relaxed text-[#3a3a3a] lg:mb-9">
             Pourquoi nous existons, comment nous agissons, et ce en quoi nous
             croyons.
           </p>
 
           <a
             href="#"
-            className="inline-block rounded-full bg-[#ffca3c] px-14 py-4 font-body text-lg font-bold text-white no-underline shadow-[0_4px_14px_rgba(255,202,60,0.45)] transition hover:bg-[#f0b92c]"
+            className="inline-block rounded-full bg-[#ffca3c] px-10 py-3 font-body text-[clamp(15px,1.9vh,18px)] font-bold text-white no-underline shadow-[0_4px_14px_rgba(255,202,60,0.45)] transition hover:bg-[#f0b92c] lg:px-12 lg:py-3.5"
           >
             Voir plus
           </a>
@@ -104,13 +133,14 @@ export function RacinesAiles() {
           <div className="overflow-hidden">
             <div
               ref={trackRef}
-              className="flex transition-transform duration-500 ease-out"
+              className="flex items-start will-change-transform"
               style={{
+                transition: `transform ${DURATION}ms ${EASE}`,
                 transform: hovered
                   ? "translateX(0)"
-                  : `translateX(-${index * (CARD_W + GAP)}px)`,
+                  : `translateX(-${index * (dims.card + dims.gap)}px)`,
               }}
-              onMouseLeave={() => setHovered(null)}
+              onMouseLeave={leave}
             >
               {CARDS.map((card) => {
                 const isHovered = hovered === card.id;
@@ -119,17 +149,22 @@ export function RacinesAiles() {
                 return (
                   <article
                     key={card.id}
-                    onMouseEnter={() => setHovered(card.id)}
-                    className="group shrink-0 overflow-hidden rounded-[22px] bg-white shadow-[0_10px_30px_rgba(0,0,0,0.07)] transition-all duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
+                    onMouseEnter={() => enter(card.id)}
+                    className="shrink-0 overflow-hidden rounded-[12px] bg-white shadow-[0_10px_30px_rgba(0,0,0,0.07)] will-change-[width,margin,opacity]"
                     style={{
-                      width: isHovered ? "100%" : isDimmed ? 0 : CARD_W,
-                      marginRight: isDimmed ? 0 : GAP,
-                      marginTop: isHovered ? 0 : card.offset,
+                      transition: `width ${DURATION}ms ${EASE}, margin-right ${DURATION}ms ${EASE}, opacity ${DURATION}ms ${EASE}`,
+                      width: isHovered ? "100%" : isDimmed ? 0 : dims.card,
+                      marginRight: isDimmed ? 0 : dims.gap,
                       opacity: isDimmed ? 0 : 1,
-                      padding: isDimmed ? 0 : 12,
                     }}
                   >
-                    <div className="relative h-[520px] overflow-hidden rounded-[16px]">
+                    <div
+                      className="relative overflow-hidden will-change-[height]"
+                      style={{
+                        transition: `height ${DURATION}ms ${EASE}`,
+                        height: isHovered ? dims.imgH : dims.imgH + card.offset,
+                      }}
+                    >
                       <img
                         src={card.image}
                         alt={card.alt}
@@ -137,21 +172,23 @@ export function RacinesAiles() {
                       />
 
                       <div
-                        className={`absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/55 to-transparent p-7 transition-opacity duration-500 ${
-                          isHovered ? "opacity-100" : "opacity-0"
-                        }`}
+                        className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/55 to-transparent p-6"
+                        style={{
+                          transition: `opacity ${DURATION}ms ${EASE}`,
+                          opacity: isHovered ? 1 : 0,
+                        }}
                       >
-                        <p className="max-w-[640px] font-body text-[16px] leading-relaxed text-white">
+                        <p className="max-w-[640px] font-body text-[clamp(13px,1.7vh,16px)] leading-relaxed text-white">
                           {card.description}
                         </p>
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-4 px-2 py-5">
-                      <svg width="30" height="20" viewBox="0 0 30 20" aria-hidden="true">
+                    <div className="flex h-[66px] items-center gap-3 px-4">
+                      <svg width="26" height="18" viewBox="0 0 30 20" aria-hidden="true">
                         <path d="M 2,3 L 22,10 L 2,17 L 9,10 Z" fill="#d9553f" />
                       </svg>
-                      <h3 className="whitespace-nowrap font-title text-xl font-bold text-[#1a1a1a]">
+                      <h3 className="whitespace-nowrap font-title text-[clamp(15px,2.1vh,20px)] font-bold text-[#1a1a1a]">
                         {card.label}
                       </h3>
                     </div>
@@ -162,9 +199,11 @@ export function RacinesAiles() {
           </div>
 
           <div
-            className={`transition-opacity duration-300 ${
-              hovered ? "pointer-events-none opacity-0" : "opacity-100"
-            }`}
+            className="transition-opacity duration-300"
+            style={{
+              opacity: hovered ? 0 : 1,
+              pointerEvents: hovered ? "none" : "auto",
+            }}
           >
             <Arrow
               side="left"

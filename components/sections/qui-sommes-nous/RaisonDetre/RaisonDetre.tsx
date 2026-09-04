@@ -38,20 +38,20 @@ const SLIDES: Slide[] = [
   },
 ];
 
-/** Adoucit une valeur 0→1 : départ et arrivée sans à-coup. */
+/** Adoucit une valeur 0→1 (smootherstep de Perlin : dérivée seconde nulle aux bornes). */
 function smooth(t: number) {
   const x = Math.min(Math.max(t, 0), 1);
-  return x * x * (3 - 2 * x);
+  return x * x * x * (x * (x * 6 - 15) + 10);
 }
 
 /** Position verticale (en %) d'une diapo selon sa progression locale. */
 function slideY(d: number, isLast: boolean) {
   if (d <= 0) return 100;
-  if (d < 0.32) return 100 - 100 * smooth(d / 0.32);
-  if (d < 0.72) return 0;
+  if (d < 0.42) return 100 - 100 * smooth(d / 0.42);
+  if (d < 0.58) return 0;
   if (isLast) return 0;
-  if (d < 1) return -130 * smooth((d - 0.72) / 0.28);
-  return -130;
+  if (d < 1) return -140 * smooth((d - 0.58) / 0.42);
+  return -140;
 }
 
 export function RaisonDetre() {
@@ -72,7 +72,7 @@ export function RaisonDetre() {
 
     const tick = () => {
       setProgress((current) => {
-        const next = current + (targetRef.current - current) * 0.12;
+        const next = current + (targetRef.current - current) * 0.055;
         return Math.abs(targetRef.current - next) < 0.0002
           ? targetRef.current
           : next;
@@ -98,7 +98,7 @@ export function RaisonDetre() {
 
   return (
     <section>
-      <div className="relative bg-[linear-gradient(to_right,#006af1,#80e9f9)] lg:hidden">
+      <div className="relative my-[14px] overflow-hidden rounded-[22px] bg-[linear-gradient(to_right,#006af1,#80e9f9)] lg:hidden">
         <img
           src="/images/montagne.png"
           alt=""
@@ -117,7 +117,7 @@ export function RaisonDetre() {
         className="hidden lg:block"
         style={{ height: `${SLIDES.length * 100}vh` }}
       >
-        <div className="sticky top-0 h-screen overflow-hidden bg-[linear-gradient(to_right,#006af1,#80e9f9)]">
+        <div className="sticky top-[14px] h-[calc(100vh_-_28px)] overflow-hidden rounded-[22px] bg-[linear-gradient(to_right,#006af1,#80e9f9)]">
           {SLIDES.map((slide, i) => {
             const y = slideY(t - i, i === SLIDES.length - 1);
             return (
@@ -171,9 +171,21 @@ function SlideContent({ slide }: { slide: Slide }) {
         </div>
 
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16">
-          <p className="max-w-[380px] font-accent text-[clamp(1.1rem,1.8vw,1.6rem)] italic leading-relaxed text-[#0b1e3a] lg:-translate-x-[100px] lg:pl-0 lg:pt-[72px]">
-            {slide.script}
-          </p>
+          <div className="flex items-start gap-10 lg:pt-[60px]">
+           <p
+              style={{ fontFamily: "var(--font-script)" }}
+              className="w-[46%] shrink-0 translate-x-[30px] text-right text-[clamp(1.4rem,2.5vw,2.4rem)] leading-relaxed text-[#0b1e3a]"
+            >
+              {slide.script}
+            </p>
+
+            <img
+              src="/images/producteurs.svg"
+              alt=""
+              aria-hidden="true"
+              className="w-[clamp(340px,36vw,580px)] shrink-0 -translate-x-[180px] -translate-y-[150px] select-none"
+            />
+          </div>
 
           <div className="rounded-[24px] bg-gradient-to-br from-[#cfe8f7]/95 to-[#eaf6fd]/95 p-8 shadow-lg lg:p-11">
             <p className="mb-5 font-body text-[clamp(1rem,1.5vw,1.4rem)] font-bold leading-snug text-[#111]">

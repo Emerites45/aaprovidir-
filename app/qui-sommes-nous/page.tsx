@@ -1,39 +1,23 @@
-import { HeroPolitiques } from "@/components/sections/HeroPolitiques/HeroPolitiques";
-import { ZacheeIntro } from "@/components/sections/ZacheeIntro/ZacheeIntro";
-import { ZacheeQuote } from "@/components/sections/ZacheeQuote/ZacheeQuote";
-import { RaisonDetre } from "@/components/sections/RaisonDetre/RaisonDetre";
-import { MondeIdeal } from "@/components/sections/MondeIdeal/MondeIdeal";
-import { RacinesAiles } from "@/components/sections/RacinesAiles/RacinesAiles";
-import { CercleOr } from "@/components/sections/CercleOr/CercleOr";
-
-//CercleOr.tsx
+import { HeroPolitiques } from "@/components/sections/qui-sommes-nous/HeroPolitiques/HeroPolitiques";
+import { ZacheeIntro } from "@/components/sections/qui-sommes-nous/ZacheeIntro/ZacheeIntro";
+import { ZacheeQuote } from "@/components/sections/qui-sommes-nous/ZacheeQuote/ZacheeQuote";
+import { RaisonDetre } from "@/components/sections/qui-sommes-nous/RaisonDetre/RaisonDetre";
+import { MondeIdeal } from "@/components/sections/qui-sommes-nous/MondeIdeal/MondeIdeal";
+import { RacinesAiles } from "@/components/sections/qui-sommes-nous/RacinesAiles/RacinesAiles";
+import { CercleOr } from "@/components/sections/qui-sommes-nous/CercleOr/CercleOr";
+import { UncoverStack } from "@/components/layout/UncoverStack";
+import { DrawerIndentBackground } from "@base-ui/react";
 
 export default function QuiSommesNousPage() {
   return (
-    <main className="relative">
-      <div className="sticky top-0 h-screen overflow-hidden">
-        <HeroPolitiques />
-      </div>
-
-      <div className="sticky top-0 h-screen overflow-hidden">
-        <ZacheeIntro />
-      </div>
-
-      <div className="sticky top-0 h-screen overflow-hidden">
-        <ZacheeQuote />
-      </div>
-
+    <main className="relative bg-[#ffffff]">
+      <HeroPolitiques />
+      <ZacheeIntro />
+      <ZacheeQuote />
       <RaisonDetre />
-
-      <div className="sticky top-0 h-screen overflow-hidden">
-        <CercleOr />
-      </div>
-
+      <CercleOr />
       <MondeIdeal />
-
-      <div className="sticky top-0 h-screen overflow-hidden">
-        <RacinesAiles />
-      </div>
+      <RacinesAiles />
     </main>
   );
 }
