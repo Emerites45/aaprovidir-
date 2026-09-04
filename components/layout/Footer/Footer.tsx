@@ -58,7 +58,7 @@ const LEGAL = [
 
 export function Footer() {
   return (
-    <footer className="relative mt-[14px] overflow-hidden rounded-t-[22px] bg-[#0b2545] text-white">
+    <footer className="relative mt-[14px] overflow-hidden rounded-t-[22px] bg-[#0b438c] text-white">
       <div className="grid grid-cols-1 gap-12 px-[5%] pb-8 pt-16 lg:grid-cols-[minmax(280px,380px)_1fr] lg:gap-16 lg:pt-20">
         {/* Bloc présentation */}
         <div className="rounded-[20px] bg-white/[0.06] p-8 text-center lg:p-10">
