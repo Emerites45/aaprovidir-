@@ -41,7 +41,7 @@ const CATEGORIES = [
 
 export function HeroSupply() {
   return (
-    <section className="bg-gradient-to-b from-[#bce1ff] via-[#e9f0f6] to-[#fafbf3] px-[5%] pt-20">
+    <section className="bg-gradient-to-b from-[#bce1ff] via-[#e9f0f6] to-[#fafbf3] px-[5%] pt-[120px]">
       <div className="mx-auto max-w-[1400px] pb-10">
         <h1 className="mb-8 max-w-[800px] text-[2.4rem] font-bold leading-tight text-[#595959]">
           Un approvisionnement <span className="text-[#07796b]">fiable et vertueux</span>

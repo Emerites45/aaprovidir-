@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui";
 import styles from "./Header.module.css";
@@ -10,9 +13,18 @@ const LINKS = [
 ];
 
 export function Header() {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <header className={styles.header}>
-      <nav className={styles.pill}>
+    <header className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}>
+      <nav className={styles.bar}>
         <Link href="/" className={styles.logo}>
           <img src="/images/logo-bleu.png" alt="Aaprovidir" />
         </Link>

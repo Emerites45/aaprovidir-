@@ -1,19 +1,19 @@
-import { HeroSupply } from "@/components/sections/HeroSupply/HeroSupply";
-import { EcoPromise } from "@/components/sections/EcoPromise/EcoPromise";
-import { HeroAnimated } from "@/components/sections/HeroAnimated/HeroAnimated";
-import { AccordionShowcase } from "@/components/sections/AccordionShowcase/AccordionShowcase";
-import { ProductsCarousel } from "@/components/sections/ProductsCarousel/ProductsCarousel";
-import { MobileFeatures } from "@/components/sections/MobileFeatures/MobileFeatures";
-import { StoryTimeline } from "@/components/sections/StoryTimeline/StoryTimeline";
-import { Faq } from "@/components/sections/Faq/Faq";
-import { Newsletter } from "@/components/sections/Newsletter/Newsletter";
-import {HeroAnimate} from '@/components/sections/HeroAnimate/HeroAnimate';
-import { ProsperProduction } from '@/components/sections/ProsperProduction/ProsperProduction';
+import {HeroAnimate} from '@/components/pages/home/HeroAnimate/HeroAnimate';
+import { ProsperProduction } from '@/components/pages/home/ProsperProduction/ProsperProduction';
 import { ParlonsVolumes
- } from '@/components/sections/ParlonsVolumes/ParlonsVolumes';
- import { WhyChoose } from '@/components/sections/WhyChoose/WhyChoose';
+ } from '@/components/pages/home/ParlonsVolumes/ParlonsVolumes';
+ import { WhyChoose } from '@/components/pages/home/WhyChoose/WhyChoose';
+import { HeroSupply } from "@/components/pages/home/HeroSupply/HeroSupply";
+import { EcoPromise } from "@/components/pages/home/EcoPromise/EcoPromise";
+import { HeroAnimated } from "@/components/pages/home/HeroAnimated/HeroAnimated";
+import { AccordionShowcase } from "@/components/pages/home/AccordionShowcase/AccordionShowcase";
+import { ProductsCarousel } from "@/components/pages/home/ProductsCarousel/ProductsCarousel";
+import { MobileFeatures } from "@/components/pages/home/MobileFeatures/MobileFeatures";
+import { StoryTimeline } from "@/components/pages/home/StoryTimeline/StoryTimeline";
+import { Faq } from "@/components/pages/home/Faq/Faq";
+import { Newsletter } from "@/components/pages/home/Newsletter/Newsletter";
 
- import { AgricultureCarousel } from '@/components/sections/AgricultureCarousel/AgricultureCarousel';
+ import { AgricultureCarousel } from '@/components/pages/home/AgricultureCarousel/AgricultureCarousel';
 
  
 export default function Home() {
