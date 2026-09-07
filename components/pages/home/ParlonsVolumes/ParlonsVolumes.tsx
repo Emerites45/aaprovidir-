@@ -2,26 +2,29 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 
+interface ParlonsVolumesProps {
+  videoSrc?: string;
+  posterSrc?: string;
+  phoneNumber?: string;
+  emailAddress?: string;
+}
+
 /**
  * Composant ParlonsVolumes
- * 
- * @param {string} videoSrc - Chemin vers votre vidéo dans /public (ex: "/videos/cocoa-volumes.mp4")
- * @param {string} posterSrc - Image de secours si la vidéo ne charge pas ou est en pause
- * @param {string} phoneNumber - Numéro de téléphone pour l'action "Par appel"
- * @param {string} emailAddress - Adresse e-mail pour l'action "Par mail"
  */
 export function ParlonsVolumes({
   videoSrc = "/videos/cocoa-volumes.mp4",
   posterSrc = "/images/cocoa-background-fallback.jpg",
   phoneNumber = "+237 600 00 00 00",
   emailAddress = "contact@back2mboa.cm"
-}) {
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [isMuted, setIsMuted] = useState(true);
-  const [hasError, setHasError] = useState(false);
-  const [activeModal, setActiveModal] = useState(null); // 'call' | 'mail' | null
+}: ParlonsVolumesProps) {
+  const [isPlaying, setIsPlaying] = useState<boolean>(true);
+  const [isMuted, setIsMuted] = useState<boolean>(true);
+  const [hasError, setHasError] = useState<boolean>(false);
+  const [activeModal, setActiveModal] = useState<'call' | 'mail' | null>(null);
 
-  const videoRef = useRef(null);
+  // Correction : Spécifier explicitement HTMLVideoElement
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     if (videoRef.current) {
@@ -50,7 +53,7 @@ export function ParlonsVolumes({
   return (
     <section className="relative w-full min-h-[500px] sm:min-h-[580px] lg:min-h-[640px] bg-[#1a0d08] text-white overflow-hidden flex items-center justify-start select-none">
       
-      {}
+      {/* BACKGROUND VIDEO / IMAGE */}
       <div className="absolute inset-0 z-0">
         {!hasError ? (
           <video
@@ -74,12 +77,12 @@ export function ParlonsVolumes({
           />
         )}
 
-        {/* Degradé vignette sombre pour garantir la parfaite lisibilité des textes */}
+        {/* Dégradé vignette sombre pour garantir la parfaite lisibilité des textes */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-black/30 backdrop-blur-[0.5px]" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/40" />
       </div>
 
-      {}
+      {/* CONTENU */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-12 flex flex-col justify-between min-h-[500px] sm:min-h-[580px]">
         
         {/* BLOC HAUT-GAUCHE : TITRE ET PILULES DE CONTACT */}
@@ -121,7 +124,7 @@ export function ParlonsVolumes({
           </div>
         </div>
 
-        {}
+        {/* BOUTON PLAY/PAUSE CENTRAL */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
           <button
             type="button"
@@ -149,7 +152,7 @@ export function ParlonsVolumes({
 
       </div>
 
-      {}
+      {/* MODALE DE CONTACT */}
       {activeModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md animate-fadeIn">
           <div className="relative w-full max-w-md bg-[#1f140e] border border-white/20 rounded-3xl p-6 sm:p-8 text-white shadow-2xl space-y-6">
