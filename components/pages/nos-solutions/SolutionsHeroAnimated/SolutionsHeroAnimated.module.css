@@ -1,0 +1,143 @@
+/* --- Titre & Effets --- */
+.titleVisible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.titleShimmer {
+  animation: shimmerTitle 4s ease-in-out infinite;
+}
+
+@keyframes shimmerTitle {
+  0%, 100% {
+    filter: drop-shadow(0 0 10px rgba(234, 249, 138, 0.4));
+  }
+  50% {
+    filter: drop-shadow(0 0 20px rgba(234, 249, 138, 0.8));
+  }
+}
+
+/* --- L'homme : fade + léger slide-up --- */
+.man {
+  opacity: 0;
+  transform: translateY(40px); /* uniquement vertical, pas de translateX */
+  transition:
+    opacity 0.9s ease-out,
+    transform 0.9s ease-out;
+}
+.manVisible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.manFloating {
+  animation: floatMan 7s ease-in-out infinite 2s;
+}
+
+@keyframes floatMan {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+/* --- Le maïs : part du niveau des mains, monte se placer sous le titre --- */
+.corn {
+  top: 42%;
+  opacity: 0;
+  transform: scale(0.85);
+  transition:
+    top 1.8s cubic-bezier(0.22, 1, 0.36, 1) 0.4s,
+    opacity 0.7s ease-out 0.4s,
+    transform 1.8s cubic-bezier(0.22, 1, 0.36, 1) 0.4s;
+}
+.cornVisible {
+  top: 6.5rem;   /* juste sous le titre, en valeur fixe pour rester précis */
+  opacity: 1;
+  transform: scale(1);
+}
+.cornFloating {
+  animation: floatCorn 5s ease-in-out infinite 2.2s;
+}
+
+@keyframes floatCorn {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-8px) scale(1);
+  }
+}
+
+/* --- La courbe : se dessine progressivement --- */
+.curvePath {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  transition: stroke-dashoffset 1.6s ease-out 0.9s;
+}
+.curvePathVisible {
+  stroke-dashoffset: 0;
+}
+.curveGlow {
+  animation: glowCurve 3s ease-in-out infinite 2.5s;
+}
+
+@keyframes glowCurve {
+  0%, 100% {
+    filter: drop-shadow(0 0 2px rgba(234, 249, 138, 0.4));
+  }
+  50% {
+    filter: drop-shadow(0 0 8px rgba(234, 249, 138, 0.9));
+  }
+}
+
+/* --- Les points de la courbe : apparaissent un à un --- */
+.curveDot {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(0.4);
+  transition:
+    opacity 0.35s ease-out,
+    transform 0.35s ease-out;
+}
+.curveDotVisible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* --- Particules Flottantes d'ambiance --- */
+.floatingParticle {
+  animation: riseParticle linear infinite;
+  opacity: 0;
+}
+
+@keyframes riseParticle {
+  0% {
+    transform: translateY(0) scale(0.5);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.8;
+  }
+  80% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-250px) scale(1.2);
+    opacity: 0;
+  }
+}
+
+/* --- Respect des préférences d'accessibilité --- */
+@media (prefers-reduced-motion: reduce) {
+  .cornFloating,
+  .manFloating,
+  .titleShimmer,
+  .curveGlow,
+  .floatingParticle {
+    animation: none !important;
+  }
+}
