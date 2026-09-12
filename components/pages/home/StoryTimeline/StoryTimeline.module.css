@@ -1,0 +1,139 @@
+.wrapper {
+  height: 300vh;
+  position: relative;
+  background-color: var(--color-blue-corporate);
+  color: #fff;
+}
+.sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.track {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  padding: 0 10vw;
+  gap: 150px;
+  will-change: transform;
+}
+.panel {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  position: relative;
+}
+.introPanel {
+  gap: 60px;
+}
+.hugeTitle {
+  font-size: 6rem;
+  line-height: 0.9;
+  font-weight: 900;
+  letter-spacing: -2px;
+}
+.founderCard {
+  background: var(--card-light);
+  padding: 20px;
+  border-radius: 20px;
+  width: 250px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+.founderCard img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 15px;
+}
+.founderInfo {
+  margin-top: 15px;
+  color: var(--color-blue-corporate);
+  text-align: center;
+}
+.founderInfo strong {
+  display: block;
+  font-weight: 700;
+  font-size: 1.3rem;
+  margin-bottom: 5px;
+}
+.hookPanel {
+  width: 800px;
+  justify-content: space-between;
+  gap: 50px;
+}
+.hookPanel h2 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  width: 55%;
+  color: var(--color-yellow-action);
+}
+.productShot {
+  width: 350px;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+.timelinePanel {
+  width: 1800px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.timelineLine {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  border-top: 2px dashed rgba(255, 255, 255, 0.2);
+}
+.node {
+  position: absolute;
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.top {
+  top: 5%;
+}
+.bottom {
+  top: 50%;
+}
+.year {
+  background: var(--color-yellow-action);
+  color: var(--color-blue-corporate);
+  font-weight: bold;
+  padding: 10px 25px;
+  border-radius: 30px;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  align-self: center;
+}
+.nodeContent {
+  background: var(--card-dark);
+  color: var(--color-off-white);
+  padding: 20px;
+  border-radius: 15px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+}
+.nodeImage {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+.spacer {
+  flex-shrink: 0;
+  width: 300px;
+}

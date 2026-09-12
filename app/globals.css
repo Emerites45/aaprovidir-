@@ -1,0 +1,219 @@
+@import "tailwindcss";
+@import "../styles/tokens.css";
+
+/* ==========================================================================
+   Polices auto-hébergées — fontes variables (un fichier = toutes les graisses)
+   ========================================================================== */
+
+/* ✅ Police officielle et libre "Google Sans Flex" (Open Font License),
+   téléchargée sur fonts.google.com. On la déclare sous le nom "Google Sans"
+   pour que tous les tokens existants (--font-body, --font-title, etc. dans
+   tokens.css) continuent de fonctionner sans aucune autre modification. */
+@font-face {
+  font-family: "Google Sans";
+  src: url("/fonts/GoogleSansFlex-Variable.ttf") format("truetype");
+  font-weight: 300 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ⚠️ Le fichier variable officiel de Google Sans Flex ne fournit pas
+   d'axe italique. Si vous avez besoin de texte en italique, deux choix :
+   1) laisser le navigateur générer un "faux italique" automatiquement
+      (par défaut, en enlevant simplement cette règle) ;
+   2) ou déclarer explicitement font-style: oblique quelque part si vous
+      voulez contrôler l'angle. Ne pas remettre l'ancien fichier
+      "GoogleSans-Italic-Variable.ttf" non officiel : sa provenance/licence
+      n'est pas vérifiée. */
+
+@font-face {
+  font-family: "Benedict";
+  src: url("/fonts/Benedict.otf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+* {
+  font-family: var(--font-body);
+}
+
+/* Mappe les tokens Aaprovidir sur les variables attendues par shadcn,
+   pour que les composants "default/secondary/outline" adoptent aussi
+   l'identité de marque sans rien redéfinir dans chaque fichier. */
+@theme inline {
+  --color-primary: var(--color-blue-corporate);
+  --color-primary-foreground: #ffffff;
+  --color-secondary: var(--card-light);
+  --color-secondary-foreground: var(--color-dark-gray);
+  --color-accent: var(--color-cyan-innovation);
+  --color-accent-foreground: var(--color-blue-corporate);
+  --color-muted: var(--color-off-white);
+  --color-muted-foreground: var(--color-dark-gray);
+  --color-border: var(--color-light-gray);
+  --color-input: var(--color-light-gray);
+  --color-background: #ffffff;
+  --color-card: #ffffff;
+  --color-card-foreground: var(--color-dark-gray);
+  --color-destructive: #d32f2f;
+  --color-destructive-foreground: #ffffff;
+  --radius: 0.75rem;
+}
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 110px;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background-color: #ffffff;
+    color: var(--color-dark-gray);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+  /* ⚠️ CORRECTION : cette règle était redondante avec le sélecteur
+     universel plus haut (elle refaisait juste un "inherit" sur une
+     valeur déjà posée). Supprimée pour éviter la confusion — la
+     règle `* { font-family: var(--font-body); }` suffit largement. */
+  img,
+  svg,
+  video {
+    display: block;
+    max-width: 100%;
+  }
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  button {
+    font: inherit;
+    cursor: pointer;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-cyan-innovation);
+    outline-offset: 3px;
+  }
+}
+
+/* ==========================================================================
+   Animations globales — reprises à l'identique du site statique d'origine.
+   Utilisées via className (ex: <Card shine />) plutôt que via un .module.css,
+   car partagées par plusieurs composants shadcn-style.
+   ========================================================================== */
+@keyframes shine {
+  0% { left: -75%; }
+  33% { left: 125%; }
+  100% { left: 125%; }
+}
+
+@layer utilities {
+  /* Dérivé de .hero-card::after */
+  .shine-effect {
+    position: relative;
+    overflow: hidden;
+  }
+  .shine-effect::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+      100deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.35) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    transform: skewX(-20deg);
+    animation: shine 3s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  /* Dérivé de .reveal-item — utilisé avec le hook useRevealOnScroll */
+  .reveal-item {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+  .reveal-item.active {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shine-effect::after {
+    animation: none;
+  }
+  .reveal-item {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+@keyframes diagonal-fall {
+  0% {
+    top: -12%;
+    left: -10%;
+    opacity: 0;
+  }
+  8% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    top: 78%;
+    left: 105%;
+    opacity: 0;
+  }
+}
+
+@keyframes block-enter {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes image-enter {
+  from {
+    opacity: 0;
+    transform: scale(1.04) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
