@@ -20,19 +20,65 @@ const rightWords = [
 
 export function QualityDeliverySection() {
   return (
-    <section className="w-full py-10 md:py-16">
+    <section className="w-full py-12 md:py-20" style={{ backgroundColor: "#f3fff8" }}>
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
+        
+        {/* ========== HEADER : Nos process / Vos standards ========== */}
+        {/* Même grille que les cartes du bas → même largeur */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-6 mb-8 md:mb-10">
+          
+          {/* Colonne gauche - Nos process */}
+          <div className="flex flex-col">
+            <h3 
+              className="text-[28px] md:text-[34px] font-semibold text-[#0b438c] mb-5"
+              style={{ fontFamily: "VGA, sans-serif" }}
+            >
+              Nos process
+            </h3>
+
+            <div className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden">
+              <Image
+                src="/images/yoanananas.png"
+                alt="Nos process"
+                fill
+                className="object-cover"
+                priority
+              />
+            </div>
+          </div>
+
+          {/* Colonne droite - Vos standards */}
+          <div className="flex flex-col">
+            <h3 
+              className="text-[28px] md:text-[34px] font-semibold text-[#0b438c] mb-5"
+              style={{ fontFamily: "VGA, sans-serif" }}
+            >
+              Vos standards
+            </h3>
+
+            <div className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden">
+              <Image
+                src="/images/labo.png"
+                alt="Vos standards"
+                fill
+                className="object-cover"
+                priority
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* ========== CARTES BLEUES ========== */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-6">
           
-          {/* ========== CARD 1 ========== */}
+          {/* CARD 1 */}
           <div className="relative overflow-hidden rounded-[28px] bg-[#0A2A5E] text-white h-[620px] md:h-[680px]">
-            {/* Texte défilant – commence plus bas pour ne pas chevaucher le titre */}
-            <div className="absolute inset-x-0 top-[140px] bottom-0 overflow-hidden">
+            <div className="absolute inset-x-0 top-[140px] bottom-0 overflow-hidden z-0">
               <ScrollingText words={leftWords} />
             </div>
 
-            <div className="relative z-20 flex flex-col h-full p-8 md:p-10">
-              <div className="flex justify-between items-start">
+            <div className="relative z-20 flex flex-col h-full">
+              <div className="flex justify-between items-start p-8 md:p-10 pb-0">
                 <h2 className="text-[32px] md:text-[40px] font-semibold leading-[1.15] max-w-[260px]">
                   Nous<br />monitorons la<br />qualité
                 </h2>
@@ -41,28 +87,26 @@ export function QualityDeliverySection() {
                 </button>
               </div>
 
-              <div className="mt-auto pt-4">
-                <div className="relative w-full h-[340px] md:h-[380px]">
-                  <Image
-                    src="/images/quality-man.png"
-                    alt="Contrôle qualité"
-                    fill
-                    className="object-contain object-bottom"
-                    priority
-                  />
-                </div>
+              <div className="mt-auto relative w-full flex-1 min-h-0 scale-110 origin-bottom">
+                <Image
+                  src="/images/quality-man.png"
+                  alt="Contrôle qualité"
+                  fill
+                  className="object-contain object-bottom"
+                  priority
+                />
               </div>
             </div>
           </div>
 
-          {/* ========== CARD 2 ========== */}
+          {/* CARD 2 */}
           <div className="relative overflow-hidden rounded-[28px] bg-[#0A2A5E] text-white h-[620px] md:h-[680px]">
-            <div className="absolute inset-x-0 top-[140px] bottom-0 overflow-hidden">
+            <div className="absolute inset-x-0 top-[140px] bottom-0 overflow-hidden z-0">
               <ScrollingText words={rightWords} direction="left" />
             </div>
 
-            <div className="relative z-20 flex flex-col h-full p-8 md:p-10">
-              <div className="flex justify-between items-start">
+            <div className="relative z-20 flex flex-col h-full">
+              <div className="flex justify-between items-start p-8 md:p-10 pb-0">
                 <h2 className="text-[32px] md:text-[40px] font-semibold leading-[1.15] max-w-[240px]">
                   Livrée dans<br />votre
                 </h2>
@@ -71,21 +115,21 @@ export function QualityDeliverySection() {
                 </button>
               </div>
 
-              <div className="mt-auto flex flex-col items-center gap-5 pt-4">
-                <div className="relative w-full max-w-[360px] h-[300px] md:h-[340px]">
-                  <Image
-                    src="/images/delivery-man.png"
-                    alt="Livraison fraîche"
-                    fill
-                    className="object-contain"
-                    priority
-                  />
-                  <div className="absolute inset-0 rounded-full bg-yellow-400/20 blur-3xl -z-10 scale-110" />
-                </div>
+              <div className="mt-auto relative w-full flex-1 min-h-0 scale-110 origin-bottom">
+                <Image
+                  src="/images/delivery-man.png"
+                  alt="Livraison fraîche"
+                  fill
+                  className="object-contain object-bottom"
+                  priority
+                />
+                <div className="absolute inset-0 rounded-full bg-yellow-400/20 blur-3xl -z-10 scale-125 pointer-events-none" />
 
-                <button className="bg-white text-[#0A2A5E] text-sm font-medium px-8 py-3 rounded-full hover:bg-blue-50 transition shadow-lg">
-                  Découvrir
-                </button>
+                <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-30">
+                  <button className="bg-white text-[#0A2A5E] text-sm font-medium px-8 py-3 rounded-full hover:bg-blue-50 transition shadow-lg">
+                    Découvrir
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -95,7 +139,7 @@ export function QualityDeliverySection() {
   );
 }
 
-/* ========== Texte défilant – 3 mots différents s’illuminent (ligne 1, 3 et 5) ========== */
+/* ========== Texte défilant ========== */
 function ScrollingText({
   words,
   direction = "right",
@@ -105,7 +149,6 @@ function ScrollingText({
 }) {
   const [offset, setOffset] = useState(0);
 
-  // Fait avancer les positions d’illumination
   useEffect(() => {
     const interval = setInterval(() => {
       setOffset((prev) => (prev + 1) % words.length);
@@ -113,14 +156,10 @@ function ScrollingText({
     return () => clearInterval(interval);
   }, [words.length]);
 
-  // Positions des 3 mots illuminés (différents à chaque fois)
-  // Ligne 0 (1ère) → un mot
-  // Ligne 2 (3ème) → un autre mot
-  // Ligne 4 (5ème) → un dernier mot
   const activeIndexes = {
-    0: offset % words.length,                    // 1ère ligne
-    2: (offset + 4) % words.length,              // 3ème ligne
-    4: (offset + 8) % words.length,              // 5ème ligne
+    0: offset % words.length,
+    2: (offset + 4) % words.length,
+    4: (offset + 8) % words.length,
   };
 
   const duplicated = [...words, ...words, ...words, ...words];
