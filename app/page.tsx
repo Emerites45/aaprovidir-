@@ -12,6 +12,8 @@ import { MobileFeatures } from "@/components/pages/home/MobileFeatures/MobileFea
 import { StoryTimeline } from "@/components/pages/home/StoryTimeline/StoryTimeline";
 import { Faq } from "@/components/pages/home/Faq/Faq";
 import { Newsletter } from "@/components/pages/home/Newsletter/Newsletter";
+import { QualityDeliverySection } from "@/components/pages/home/QualityDeliverySection/QualityDeliverySection";
+
 
  import { AgricultureCarousel } from '@/components/pages/home/AgricultureCarousel/AgricultureCarousel';
 
@@ -24,6 +26,7 @@ export default function Home() {
       <HeroAnimated />
       <AccordionShowcase />
       <ProductsCarousel />
+      <QualityDeliverySection />
       <MobileFeatures />
       <StoryTimeline />
       <HeroAnimate 
