@@ -217,3 +217,22 @@
     transform: scale(1) translateY(0);
   }
 }
+
+/* globals.css */
+@keyframes marquee-right {
+  0%   { transform: translateX(-10%); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-left {
+  0%   { transform: translateX(-50%); }
+  100% { transform: translateX(-10%); }
+}
+
+.animate-marquee-right {
+  animation: marquee-right 55s linear infinite;
+}
+
+.animate-marquee-left {
+  animation: marquee-left 55s linear infinite;
+}
