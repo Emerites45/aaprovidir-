@@ -36,7 +36,7 @@ export function HeroPolitiques() {
                   textAnchor="start"
                 >
                   <textPath href="#arc-hero" startOffset={offset}>
-                    Avenir radieux - Bright future
+                    Nourir un Avenir Radieux
                   </textPath>
                 </text>
               ))}
@@ -51,7 +51,7 @@ export function HeroPolitiques() {
           className="absolute bottom-0 left-1/2 z-20 h-[90%] w-auto -translate-x-1/2 object-contain object-bottom"
         />
 
-        <h1 className="sr-only">Avenir radieux — Bright future</h1>
+        <h1 className="sr-only">Nourir un Avenir Radieux</h1>
       </div>
     </section>
   );

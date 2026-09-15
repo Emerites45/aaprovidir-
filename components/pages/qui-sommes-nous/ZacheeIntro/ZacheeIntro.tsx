@@ -21,7 +21,7 @@ export function ZacheeIntro() {
         <img
           src="/images/zachee.svg"
           alt="Portrait illustré de Zachée, planteur"
-          className="absolute bottom-0 left-0 z-30 w-[250px] max-w-[25%] select-none"
+          className="absolute bottom-0 left-0 z-30 w-[300px] max-w-[30%] select-none"
         />
       </div>
     </section>
