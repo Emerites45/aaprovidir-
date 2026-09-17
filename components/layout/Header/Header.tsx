@@ -27,7 +27,7 @@ export function Header() {
     <header className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}>
       <nav className={styles.bar}>
         <Link href="/" className={styles.logo}>
-          <img src="/images/logo-bleu.png" alt="Aaprovidir" />
+          <img src="/images/logo-bleu.svg" alt="Aaprovidir" />
         </Link>
 
         <div className={styles.links}>

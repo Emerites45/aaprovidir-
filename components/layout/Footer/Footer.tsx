@@ -173,7 +173,7 @@ export function Footer() {
       {/* Logo en arrière-plan */}
       <div className="px-[4%] pb-4 pt-6">
         <img
-          src="/images/logo-blanc.png"
+          src="/images/logo-blanc.svg"
           alt=""
           aria-hidden="true"
           className="w-full select-none opacity-[0.07]"
