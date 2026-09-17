@@ -34,7 +34,7 @@ const PANELS: Panel[] = [
     body: "Le circuit raccourci supprime trois intermédiaires entre le champ et son marché de quartier. Le même panier de vivres lui coûte un quart de moins, et chaque produit porte un code qui lui dit d'où il vient, quand il a été récolté et ce qu'il a reçu comme traitement.",
     aside: "Le plantain n'est plus trempé au formol pour tenir le voyage : il arrive stabilisé, sain, testé. Elle achète en confiance, à prix stable toute l'année, sans subir les flambées de la saison sèche. Ce qu'elle économise reste dans son foyer.",
     cta: "Je découvre cette solution",
-    image: "/images/menage.png",
+    image: "/images/Cibles3.png",
     alt: "Cliente sur un marché de quartier",
   },
   {
@@ -45,7 +45,7 @@ const PANELS: Panel[] = [
     body: "Il commande à l'avance des volumes garantis, à qualité constante, livrés selon un calendrier qu'il maîtrise. Fini les ruptures qui obligent à retirer un plat, fini les écarts de calibre qui ruinent une recette et la marge qui va avec.",
     aside: "Chaque livraison est traçable jusqu'à la coopérative d'origine — un argument qu'il affiche en salle. Ses pertes tombent sous les 10 %, ses coûts deviennent prévisibles, et il paie le juste prix à des producteurs qu'il peut nommer.",
     cta: "Je découvre cette solution",
-    image: "/images/restaurant.png",
+    image: "/images/Cibles1.png",
     alt: "Chef en cuisine préparant un plat",
   },
   {
@@ -56,7 +56,7 @@ const PANELS: Panel[] = [
     body: "Les volumes agrégés par les coopératives atteignent enfin l'échelle industrielle, avec des standards de qualité documentés à chaque étape. Les lots sont analysés, certifiés, et conformes aux exigences de traçabilité des marchés d'exportation.",
     aside: "La transformation se fait au plus près du champ, ce qui triple la valeur retenue sur le territoire. L'industriel sécurise son approvisionnement sur plusieurs saisons et démontre une chaîne responsable, du plant au conteneur.",
     cta: "Je découvre cette solution",
-    image: "/images/industrie.png",
+    image: "/images/Technicien labo.png",
     alt: "Technicien contrôlant la qualité en unité de transformation",
   },
 ];
@@ -217,7 +217,7 @@ function PanelContent({ panel }: { panel: Panel }) {
             <img
               src={panel.image}
               alt={panel.alt}
-              className="relative z-10 mx-auto h-[clamp(180px,24vh,340px)] w-auto max-w-full -translate-y-[16.5px] translate-x-[40px] select-none"
+              className="relative z-10 mx-auto h-[clamp(200px,44vh,360px)] w-auto max-w-full -translate-y-[16.5px] translate-x-[40px] select-none"
             />
 
             <svg
@@ -239,7 +239,7 @@ function PanelContent({ panel }: { panel: Panel }) {
               {panel.label}
             </span>
 
-            <span className="absolute right-[-20px] top-[18%] z-30 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-b from-[#ffc94d] to-[#f0a500] text-sm font-bold text-white shadow-[0_5px_0_0_#c98700,0_9px_16px_rgba(0,0,0,0.3)] ring-[5px] ring-white lg:h-16 lg:w-16">
+           <span className="absolute right-[-20px] top-[18%] z-30 flex h-14 w-14 items-center justify-center rounded-full bg-[linear-gradient(to_bottom,#ffc94d,#f0a500)] text-sm font-bold text-white shadow-[0_6px_14px_rgba(120,70,0,0.18),0_2px_5px_rgba(120,70,0,0.10)] ring-[5px] ring-white lg:h-16 lg:w-16">
               {panel.kpi}
             </span>
           </div>

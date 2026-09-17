@@ -8,7 +8,7 @@ export function ZacheeQuote() {
         {/* Colonne image — le planteur repose sur le bord bas */}
         <div className="lg:-mb-24 lg:self-end">
           <img
-            src="/images/zachee-quote-reponse.svg"
+            src="/images/zachee-intro.svg"
             alt="Vieux planteur tenant un sac de récolte"
             className="mx-auto w-[min(72%,360px)] select-none lg:mx-0 lg:w-full lg:max-w-none"
           />

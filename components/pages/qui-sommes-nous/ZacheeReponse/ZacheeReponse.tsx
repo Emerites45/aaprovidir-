@@ -32,9 +32,9 @@ export function ZacheeReponse() {
         {/* Colonne image — déborde volontairement à droite */}
         <div className="order-1 lg:order-2 lg:-mr-[8%]">
           <img
-            src="/images/zachee-quote-reponse.svg"
+            src="/images/zachee-section2.svg"
             alt="Deux mains serrant un sac de cacao"
-            className="mx-auto w-[min(80%,400px)] select-none lg:mx-0 lg:w-full lg:max-w-none"
+            className="mx-auto w-[min(96%,400px)] select-none lg:mx-0 lg:w-full lg:max-w-none"
           />
         </div>
       </div>
