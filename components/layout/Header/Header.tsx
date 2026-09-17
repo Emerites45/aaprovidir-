@@ -6,6 +6,7 @@ import { Button } from "@/components/ui";
 import styles from "./Header.module.css";
 
 const LINKS = [
+  { href: "/", label: "Accueil" },
   { href: "/qui-sommes-nous", label: "Notre Identité" },
   { href: "#", label: "Nos Produits" },
   { href: "#", label: "Aagriflow" },

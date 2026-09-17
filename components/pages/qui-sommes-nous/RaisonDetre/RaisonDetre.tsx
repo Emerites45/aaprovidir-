@@ -70,20 +70,32 @@ function SlideContent({ slide }: { slide: Slide }) {
       <div className="mx-auto w-full max-w-[1400px]">
         <div className="mb-6 mt-8 flex items-center gap-5 lg:mb-16 lg:mt-12">
           <span className="relative inline-flex h-12 w-12 items-center justify-center lg:h-14 lg:w-14">
+            {/* Halo — le fondu se termine bien avant le bord du cercle */}
             <span
-              className="pointer-events-none absolute -inset-[26%] rounded-full blur-[6px]"
+              className="pointer-events-none absolute -inset-[30%] rounded-full"
               style={{
                 background:
-                  "radial-gradient(circle at 50% 38%, rgba(255,255,255,0.26) 0%, rgba(255,255,255,0.12) 55%, rgba(255,255,255,0) 74%)",
-                boxShadow: "inset 0 -6px 14px rgba(0,0,0,0.12), inset 0 4px 10px rgba(255,255,255,0.14)",
+                  "radial-gradient(circle at 50% 42%, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.13) 38%, rgba(255,255,255,0.04) 54%, rgba(255,255,255,0) 66%)",
               }}
               aria-hidden="true"
             />
 
-            <span className="relative flex h-full w-full items-center justify-center rounded-full bg-[linear-gradient(to_bottom,#ffd45c,#ffc12e)] font-title text-xl font-bold leading-none text-white shadow-[0_2px_6px_rgba(0,0,0,0.12)] lg:text-2xl">
+            {/* Cavité */}
+            <span
+              className="pointer-events-none absolute -inset-[16%] rounded-full"
+              style={{
+                boxShadow:
+                  "inset 0 -7px 13px rgba(0,20,60,0.15), inset 0 5px 11px rgba(255,255,255,0.16)",
+              }}
+              aria-hidden="true"
+            />
+
+            {/* Pastille */}
+            <span className="relative flex h-full w-full items-center justify-center rounded-full bg-[linear-gradient(to_bottom,#ffd45c,#ffc12e)] font-title text-xl font-bold leading-none text-white shadow-[0_3px_8px_rgba(0,20,60,0.18)] lg:text-2xl">
               {slide.num}
             </span>
           </span>
+
           <span className="rounded-xl bg-[#30a036] px-5 py-2.5 font-title text-base font-bold text-white lg:px-6 lg:py-3 lg:text-lg">
             {slide.tag}
           </span>
