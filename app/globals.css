@@ -230,11 +230,11 @@
 }
 
 .animate-marquee-right {
-  animation: marquee-right 55s linear infinite;
+  animation: marquee-right 10s linear infinite;
 }
 
 .animate-marquee-left {
-  animation: marquee-left 55s linear infinite;
+  animation: marquee-left 10s linear infinite;
 }
 
 
