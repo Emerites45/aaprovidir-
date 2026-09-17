@@ -37,7 +37,7 @@ export function CercleOr() {
             </div>
 
             <img
-              src="/images/logo-vert.png"
+              src="/images/logo-vert.svg"
               alt=""
               aria-hidden="true"
               className="absolute left-1/2 top-[-11%] z-30 w-[11%] min-w-[52px] -translate-x-1/2 -translate-y-1/2 select-none"
