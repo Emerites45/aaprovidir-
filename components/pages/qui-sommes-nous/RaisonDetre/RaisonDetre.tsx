@@ -69,8 +69,20 @@ function SlideContent({ slide }: { slide: Slide }) {
     <div className="flex min-h-screen flex-col justify-start px-[5%] pb-[30vh] pt-[70px] lg:pt-[90px]">
       <div className="mx-auto w-full max-w-[1400px]">
         <div className="mb-6 mt-8 flex items-center gap-5 lg:mb-16 lg:mt-12">
-          <span className="flex h-12 w-12 items-center justify-center rounded-full bg-[#ffca3c] font-title text-xl font-bold text-white ring-4 ring-white/80 lg:h-14 lg:w-14 lg:text-2xl">
-            {slide.num}
+          <span className="relative inline-flex h-12 w-12 items-center justify-center lg:h-14 lg:w-14">
+            <span
+              className="pointer-events-none absolute -inset-[26%] rounded-full blur-[6px]"
+              style={{
+                background:
+                  "radial-gradient(circle at 50% 38%, rgba(255,255,255,0.26) 0%, rgba(255,255,255,0.12) 55%, rgba(255,255,255,0) 74%)",
+                boxShadow: "inset 0 -6px 14px rgba(0,0,0,0.12), inset 0 4px 10px rgba(255,255,255,0.14)",
+              }}
+              aria-hidden="true"
+            />
+
+            <span className="relative flex h-full w-full items-center justify-center rounded-full bg-[linear-gradient(to_bottom,#ffd45c,#ffc12e)] font-title text-xl font-bold leading-none text-white shadow-[0_2px_6px_rgba(0,0,0,0.12)] lg:text-2xl">
+              {slide.num}
+            </span>
           </span>
           <span className="rounded-xl bg-[#30a036] px-5 py-2.5 font-title text-base font-bold text-white lg:px-6 lg:py-3 lg:text-lg">
             {slide.tag}
