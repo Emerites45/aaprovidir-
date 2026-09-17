@@ -13,6 +13,7 @@ import { StoryTimeline } from "@/components/pages/home/StoryTimeline/StoryTimeli
 import { Faq } from "@/components/pages/home/Faq/Faq";
 import { Newsletter } from "@/components/pages/home/Newsletter/Newsletter";
 import { QualityDeliverySection } from "@/components/pages/home/QualityDeliverySection/QualityDeliverySection";
+import { QualityDeliverySection2 } from "@/components/pages/home/QualityDeliverySection/QualityDeliverySection2";
 
 
  import { AgricultureCarousel } from '@/components/pages/home/AgricultureCarousel/AgricultureCarousel';
@@ -27,6 +28,7 @@ export default function Home() {
       <AccordionShowcase />
       <ProductsCarousel />
       <QualityDeliverySection />
+       <QualityDeliverySection2 />
       <MobileFeatures />
       <StoryTimeline />
       <HeroAnimate 

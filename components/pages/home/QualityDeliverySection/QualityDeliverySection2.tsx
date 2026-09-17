@@ -18,7 +18,7 @@ const rightWords = [
   "Bâteau", "Port", "Ville", "Pays", "Mall",
 ];
 
-export function QualityDeliverySection() {
+export function QualityDeliverySection2() {
   return (
     <section className="w-full py-12 md:py-20" style={{ backgroundColor: "#f3fff8" }}>
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
@@ -26,7 +26,7 @@ export function QualityDeliverySection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-6">
           
           {/* ========== COLONNE GAUCHE ========== */}
-          <div className="flex flex-col w-full">
+          <div className="flex flex-col">
             <h3 
               className="text-[28px] md:text-[34px] font-semibold text-[#0b438c] mb-5"
               style={{ fontFamily: "VGA, sans-serif" }}
@@ -34,48 +34,50 @@ export function QualityDeliverySection() {
               Nos process
             </h3>
 
-            {/* Image */}
-            <div className="relative w-full aspect-[16/10] rounded-[28px] overflow-hidden">
-              <Image
-                src="/images/yoanananas.png"
-                alt="Nos process"
-                fill
-                className="object-cover"
-                priority
-              />
-            </div>
-
-            {/* Carte juste en dessous — aucun chevauchement */}
-            <div className="relative w-full mt-3 overflow-hidden rounded-[28px] bg-[#0A2A5E] text-white h-[520px] md:h-[580px]">
-              <div className="absolute inset-x-0 top-[120px] bottom-0 overflow-hidden z-0">
-                <ScrollingText words={leftWords} />
+            <div className="relative">
+              {/* Image */}
+              <div className="relative w-full aspect-[16/10] rounded-[28px] overflow-hidden">
+                <Image
+                  src="/images/yoanananas.png"
+                  alt="Nos process"
+                  fill
+                  className="object-cover"
+                  priority
+                />
               </div>
 
-              <div className="relative z-20 flex flex-col h-full">
-                <div className="flex justify-between items-start p-8 md:p-10 pb-0">
-                  <h2 className="text-[32px] md:text-[40px] font-semibold leading-[1.15] max-w-[280px]">
-                    Nous monitorons<br />la qualité
-                  </h2>
-                  <button className="bg-white text-[#0A2A5E] text-sm font-medium px-5 py-2.5 rounded-full hover:bg-blue-50 transition shrink-0">
-                    En savoir plus
-                  </button>
+              {/* Carte bleue qui remonte légèrement par-dessus l'image */}
+              <div className="relative -mt-8 md:-mt-10 z-10 overflow-hidden rounded-[28px] bg-[#0A2A5E] text-white h-[520px] md:h-[580px]">
+                <div className="absolute inset-x-0 top-[120px] bottom-0 overflow-hidden z-0">
+                  <ScrollingText words={leftWords} />
                 </div>
 
-                <div className="mt-auto relative w-full flex-1 min-h-0 scale-110 origin-bottom">
-                  <Image
-                    src="/images/quality-man.png"
-                    alt="Contrôle qualité"
-                    fill
-                    className="object-contain object-bottom"
-                    priority
-                  />
+                <div className="relative z-20 flex flex-col h-full">
+                  <div className="flex justify-between items-start p-8 md:p-10 pb-0">
+                    <h2 className="text-[32px] md:text-[40px] font-semibold leading-[1.15] max-w-[280px]">
+                      Nous monitorons<br />la qualité
+                    </h2>
+                    <button className="bg-white text-[#0A2A5E] text-sm font-medium px-5 py-2.5 rounded-full hover:bg-blue-50 transition shrink-0">
+                      En savoir plus
+                    </button>
+                  </div>
+
+                  <div className="mt-auto relative w-full flex-1 min-h-0 scale-110 origin-bottom">
+                    <Image
+                      src="/images/quality-man.png"
+                      alt="Contrôle qualité"
+                      fill
+                      className="object-contain object-bottom"
+                      priority
+                    />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
           {/* ========== COLONNE DROITE ========== */}
-          <div className="flex flex-col w-full">
+          <div className="flex flex-col">
             <h3 
               className="text-[28px] md:text-[34px] font-semibold text-[#0b438c] mb-5"
               style={{ fontFamily: "VGA, sans-serif" }}
@@ -83,48 +85,50 @@ export function QualityDeliverySection() {
               Vos standards
             </h3>
 
-            {/* Image */}
-            <div className="relative w-full aspect-[16/10] rounded-[28px] overflow-hidden">
-              <Image
-                src="/images/labo.png"
-                alt="Vos standards"
-                fill
-                className="object-cover"
-                priority
-              />
-            </div>
-
-            {/* Carte juste en dessous — aucun chevauchement */}
-            <div className="relative w-full mt-3 overflow-hidden rounded-[28px] bg-[#0A2A5E] text-white h-[520px] md:h-[580px]">
-              <div className="absolute inset-x-0 top-[120px] bottom-0 overflow-hidden z-0">
-                <ScrollingText words={rightWords} direction="left" />
+            <div className="relative">
+              {/* Image */}
+              <div className="relative w-full aspect-[16/10] rounded-[28px] overflow-hidden">
+                <Image
+                  src="/images/labo.png"
+                  alt="Vos standards"
+                  fill
+                  className="object-cover"
+                  priority
+                />
               </div>
 
-              <div className="relative z-20 flex flex-col h-full">
-                <div className="flex justify-between items-start p-8 md:p-10 pb-0">
-                  <h2 className="text-[32px] md:text-[40px] font-semibold leading-[1.15] max-w-[240px]">
-                    Livrée dans<br />votre
-                  </h2>
-                  <button className="border border-white/50 text-white text-sm font-medium px-5 py-2.5 rounded-full hover:bg-white/10 transition shrink-0">
-                    Capter plus
-                  </button>
+              {/* Carte bleue qui remonte légèrement par-dessus l'image */}
+              <div className="relative -mt-8 md:-mt-10 z-10 overflow-hidden rounded-[28px] bg-[#0A2A5E] text-white h-[520px] md:h-[580px]">
+                <div className="absolute inset-x-0 top-[120px] bottom-0 overflow-hidden z-0">
+                  <ScrollingText words={rightWords} direction="left" />
                 </div>
 
-                <div className="mt-auto relative w-full flex-1 min-h-0 scale-110 origin-bottom">
-                  <Image
-                    src="/images/delivery-man.png"
-                    alt="Livraison fraîche"
-                    fill
-                    className="object-contain object-bottom"
-                    priority
-                  />
-
-                  <div className="absolute bottom-[18%] left-1/2 -translate-x-1/2 w-[180px] h-[180px] rounded-full bg-yellow-400/30 blur-2xl -z-10 pointer-events-none" />
-
-                  <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-30">
-                    <button className="bg-white text-[#0A2A5E] text-sm font-medium px-8 py-3 rounded-full hover:bg-blue-50 transition shadow-lg">
-                      Découvrir
+                <div className="relative z-20 flex flex-col h-full">
+                  <div className="flex justify-between items-start p-8 md:p-10 pb-0">
+                    <h2 className="text-[32px] md:text-[40px] font-semibold leading-[1.15] max-w-[240px]">
+                      Livrée dans<br />votre
+                    </h2>
+                    <button className="border border-white/50 text-white text-sm font-medium px-5 py-2.5 rounded-full hover:bg-white/10 transition shrink-0">
+                      Capter plus
                     </button>
+                  </div>
+
+                  <div className="mt-auto relative w-full flex-1 min-h-0 scale-110 origin-bottom">
+                    <Image
+                      src="/images/delivery-man.png"
+                      alt="Livraison fraîche"
+                      fill
+                      className="object-contain object-bottom"
+                      priority
+                    />
+
+                    <div className="absolute bottom-[18%] left-1/2 -translate-x-1/2 w-[180px] h-[180px] rounded-full bg-yellow-400/30 blur-2xl -z-10 pointer-events-none" />
+
+                    <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-30">
+                      <button className="bg-white text-[#0A2A5E] text-sm font-medium px-8 py-3 rounded-full hover:bg-blue-50 transition shadow-lg">
+                        Découvrir
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>

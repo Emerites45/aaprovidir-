@@ -34,9 +34,9 @@ const CARDS: HeroSupplyCard[] = [
 ];
 
 const CATEGORIES = [
-  { label: "Céréales", strong: "durables", image: "/images/mais.png" },
-  { label: "Fruits", strong: "durables", image: "/images/fruits.png" },
-  { label: "Produits", strong: "forestiers", image: "/images/forestiers.png" },
+  { label: "Céréales", strong: "& graines", image: "/images/Corn.png" },
+  { label: "Noix de palmes ", strong: "- huiles rouges ", image: "/images/Palm oil.png" },
+  { label: "Produits", strong: "forestiers Non ligneux", image: "/images/Shee butter.png" },
 ];
 
 export function HeroSupply() {
@@ -85,7 +85,7 @@ export function HeroSupply() {
             href="#"
             className="flex items-center gap-4 rounded-2xl bg-[color:var(--color-off-white)] px-5 py-3 no-underline shadow-[0_4px_10px_rgba(0,0,0,0.05)]"
           >
-            <img src="/images/catalogue.jpg" alt="Catalogue" className="h-[45px] w-[45px] rounded-[10px] object-cover" />
+            <img src="/images/Sample.png" alt="Catalogue" className="h-[45px] w-[45px] rounded-[10px] object-cover" />
             <span className="text-sm text-[color:var(--color-dark-gray)]">
               Parcourez notre <strong className="block font-bold text-[color:var(--color-cyan-innovation)]">Catalogue de produits</strong>
             </span>
