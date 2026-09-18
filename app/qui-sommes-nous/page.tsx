@@ -5,6 +5,7 @@ import { RaisonDetre } from "@/components/pages/qui-sommes-nous/RaisonDetre/Rais
 import { MondeIdeal } from "@/components/pages/qui-sommes-nous/MondeIdeal/MondeIdeal";
 import { RacinesAiles } from "@/components/pages/qui-sommes-nous/RacinesAiles/RacinesAiles";
 import { CercleOr } from "@/components/pages/qui-sommes-nous/CercleOr/CercleOr";
+import { ZacheeReponse } from "@/components/pages/qui-sommes-nous/ZacheeReponse/ZacheeReponse";
 import { UncoverStack } from "@/components/layout/UncoverStack";
 import { DrawerIndentBackground } from "@base-ui/react";
 
@@ -14,6 +15,7 @@ export default function QuiSommesNousPage() {
       <HeroPolitiques />
       <ZacheeIntro />
       <ZacheeQuote />
+      <ZacheeReponse />
       <RaisonDetre />
       <CercleOr />
       <MondeIdeal />
