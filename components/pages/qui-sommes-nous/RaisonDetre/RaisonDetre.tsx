@@ -69,9 +69,33 @@ function SlideContent({ slide }: { slide: Slide }) {
     <div className="flex min-h-screen flex-col justify-start px-[5%] pb-[30vh] pt-[70px] lg:pt-[90px]">
       <div className="mx-auto w-full max-w-[1400px]">
         <div className="mb-6 mt-8 flex items-center gap-5 lg:mb-16 lg:mt-12">
-          <span className="flex h-12 w-12 items-center justify-center rounded-full bg-[#ffca3c] font-title text-xl font-bold text-white ring-4 ring-white/80 lg:h-14 lg:w-14 lg:text-2xl">
-            {slide.num}
+          <span className="relative inline-flex h-12 w-12 items-center justify-center lg:h-14 lg:w-14">
+            {/* Halo — le fondu se termine bien avant le bord du cercle */}
+            <span
+              className="pointer-events-none absolute -inset-[30%] rounded-full"
+              style={{
+                background:
+                  "radial-gradient(circle at 50% 42%, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.13) 38%, rgba(255,255,255,0.04) 54%, rgba(255,255,255,0) 66%)",
+              }}
+              aria-hidden="true"
+            />
+
+            {/* Cavité */}
+            <span
+              className="pointer-events-none absolute -inset-[16%] rounded-full"
+              style={{
+                boxShadow:
+                  "inset 0 -7px 13px rgba(0,20,60,0.15), inset 0 5px 11px rgba(255,255,255,0.16)",
+              }}
+              aria-hidden="true"
+            />
+
+            {/* Pastille */}
+            <span className="relative flex h-full w-full items-center justify-center rounded-full bg-[linear-gradient(to_bottom,#ffd45c,#ffc12e)] font-title text-xl font-bold leading-none text-white shadow-[0_3px_8px_rgba(0,20,60,0.18)] lg:text-2xl">
+              {slide.num}
+            </span>
           </span>
+
           <span className="rounded-xl bg-[#30a036] px-5 py-2.5 font-title text-base font-bold text-white lg:px-6 lg:py-3 lg:text-lg">
             {slide.tag}
           </span>

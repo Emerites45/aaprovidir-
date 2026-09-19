@@ -1,27 +1,42 @@
 export function ZacheeReponse() {
   return (
     <section
-        className="my-[14px] flex h-[calc(100vh_-_28px)] flex-col items-center justify-center overflow-hidden rounded-[22px] bg-cover bg-center bg-no-repeat px-[5%] py-8 lg:py-12"
-        style={{ backgroundImage: "url('/images/background-zachee-1.png')" }}
-      >
-      <img
-        src="/images/zachee-reponse.png"
-        alt="Portrait illustré de Zachée, planteur"
-        className="mb-6 h-[clamp(280px,42vh,540px)] w-auto -translate-y-[5vh] select-none lg:mb-8"
-      />
+      className="relative my-[14px] overflow-hidden rounded-[22px] bg-cover bg-center bg-no-repeat"
+      style={{ backgroundImage: "url('/images/background-zachee-1.png')" }}
+    >
+      <div className="mx-auto grid min-h-screen w-full max-w-[1600px] grid-cols-1 items-center gap-12 px-[6%] py-20 lg:grid-cols-[1fr_0.9fr] lg:gap-8 lg:px-[5%] lg:py-24">
+        {/* Colonne texte */}
+        <div className="order-2 lg:order-1">
+          <p className="mb-7 font-body text-[clamp(12px,1vw,14px)] font-semibold uppercase tracking-[0.2em] text-white/65">
+            Nous avons passé les mois suivants à construire une réponse
+          </p>
 
-      <div className="max-w-[1300px] -translate-y-[11vh] text-center text-[clamp(22px,2.2vw,42px)] font-bold leading-snug text-[#ffffff] lg:leading-relaxed">
-        <p>
-          <span className="font-bold text-center text-[clamp(15px,2.1vw,25px)]">  Nous avons passé les mois suivants à construire une réponse.</span><br/>
-          La voici : <br/> Aucun producteur qui travaille avec nous n’est un sac anonyme.
-          Chaque lot que nous vous livrons raconte l'histoire d'un travail épanouissant, 
-          d'une prospérité partagée.
-        </p>
+          <h2 className="mb-9 font-title text-[clamp(2.4rem,5.6vw,5.4rem)] font-bold leading-[0.96] tracking-[-0.02em] text-white">
+            Aucun producteur n&apos;est un{" "}
+            <span className="text-[#ffca3c]">sac anonyme.</span>
+          </h2>
 
-        <blockquote className="mt-5 italic lg:mt-7">
-          Ce planteur, nous l’appelons Zachée. Son histoire est 
-          le récit qui a donné leur forme à nos valeurs.
-        </blockquote>
+          <p className="max-w-[44ch] font-body text-[clamp(1.05rem,1.6vw,1.55rem)] leading-[1.4] text-white/90">
+            Chaque lot que nous vous livrons raconte l&apos;histoire d&apos;un
+            travail épanouissant, d&apos;une prospérité partagée.
+          </p>
+
+          <div className="mt-12 border-t border-white/25 pt-8">
+            <p className="max-w-[42ch] font-body text-[clamp(0.95rem,1.2vw,1.15rem)] leading-relaxed text-white/70">
+              Ce planteur, nous l&apos;appelons Zachée. Son histoire est le récit
+              qui a donné leur forme à nos valeurs.
+            </p>
+          </div>
+        </div>
+
+        {/* Colonne image — déborde volontairement à droite */}
+        <div className="order-1 lg:order-2 lg:-mr-[8%]">
+          <img
+            src="/images/zachee-section2.svg"
+            alt="Deux mains serrant un sac de cacao"
+            className="mx-auto w-[min(96%,400px)] select-none lg:mx-0 lg:w-full lg:max-w-none"
+          />
+        </div>
       </div>
     </section>
   );
