@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { Reveal } from "@/components/ui/reveal";
 
 type CardItem = {
   id: string;
@@ -110,26 +111,34 @@ export function RacinesAiles() {
     >
       <div className="flex flex-col gap-10 px-[5%] lg:flex-row lg:items-start lg:gap-12 lg:pl-[5%] lg:pr-0">
         <div className="shrink-0 lg:w-[250px] lg:pt-4">
-          <h2 className="mb-5 font-title text-[clamp(26px,3.4vh,34px)] font-bold leading-tight text-[#0b438c] lg:mb-7">
-            Nos racines
-            <br />
-            et nos ailes
-          </h2>
+          <Reveal from="left">
+            <h2 className="mb-5 font-title text-[clamp(26px,3.4vh,34px)] font-bold leading-tight text-[#0b438c] lg:mb-7">
+              Nos racines
+              <br />
+              et nos ailes
+            </h2>
+          </Reveal>
 
-          <p className="mb-7 font-body text-[clamp(14px,1.9vh,17px)] leading-relaxed text-[#3a3a3a] lg:mb-9">
-            Pourquoi nous existons, comment nous agissons, et ce en quoi nous
-            croyons.
-          </p>
+          <Reveal from="left" delay={150}>
+            <p className="mb-7 font-body text-[clamp(14px,1.9vh,17px)] leading-relaxed text-[#3a3a3a] lg:mb-9">
+              Pourquoi nous existons, comment nous agissons, et ce en quoi nous
+              croyons.
+            </p>
+          </Reveal>
 
-          <a
-            href="#"
-            className="inline-block rounded-full bg-[#ffca3c] px-10 py-3 font-body text-[clamp(15px,1.9vh,18px)] font-bold text-white no-underline shadow-[0_4px_14px_rgba(255,202,60,0.45)] transition hover:bg-[#f0b92c] lg:px-12 lg:py-3.5"
-          >
-            Voir plus
-          </a>
+          <Reveal from="left" delay={300}>
+            <a
+              href="#"
+              className="inline-block rounded-full bg-[#ffca3c] px-10 py-3 font-body text-[clamp(15px,1.9vh,18px)] font-bold text-white no-underline shadow-[0_4px_14px_rgba(255,202,60,0.45)] transition hover:bg-[#f0b92c] lg:px-12 lg:py-3.5"
+            >
+              Voir plus
+            </a>
+          </Reveal>
         </div>
 
-        <div className="relative min-w-0 flex-1">
+        {/* Le carrousel s'anime d'un bloc : insérer un Reveal par carte
+            casserait la piste flex et le calcul de défilement. */}
+        <Reveal from="right" delay={220} className="relative min-w-0 flex-1">
           <div className="overflow-hidden">
             <div
               ref={trackRef}
@@ -185,7 +194,12 @@ export function RacinesAiles() {
                     </div>
 
                     <div className="flex h-[66px] items-center gap-3 px-4">
-                      <svg width="26" height="18" viewBox="0 0 30 20" aria-hidden="true">
+                      <svg
+                        width="26"
+                        height="18"
+                        viewBox="0 0 30 20"
+                        aria-hidden="true"
+                      >
                         <path d="M 2,3 L 22,10 L 2,17 L 9,10 Z" fill="#d9553f" />
                       </svg>
                       <h3 className="whitespace-nowrap font-title text-[clamp(15px,2.1vh,20px)] font-bold text-[#1a1a1a]">
@@ -216,7 +230,7 @@ export function RacinesAiles() {
               onClick={() => setIndex((i) => Math.min(maxIndex, i + 1))}
             />
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

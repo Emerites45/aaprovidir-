@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { Reveal } from "@/components/ui/reveal";
 
 type Panel = {
   id: string;
@@ -90,7 +91,7 @@ export function MondeIdeal() {
   const shift = progress * (PANELS.length - 1) * 100;
 
   return (
-    <section >
+    <section>
       <div
         className="my-[14px] overflow-hidden rounded-[22px] bg-cover bg-center bg-no-repeat lg:hidden"
         style={{ backgroundImage: BG }}
@@ -109,28 +110,34 @@ export function MondeIdeal() {
           className="sticky top-[14px] h-[calc(100vh_-_28px)] overflow-hidden rounded-[22px] bg-cover bg-center bg-no-repeat pt-[95px]"
           style={{ backgroundImage: BG }}
         >
-          <svg
-            viewBox="0 0 1000 150"
-            className="mx-auto h-[clamp(95px,14vh,160px)] w-full max-w-[1300px]"
-            preserveAspectRatio="xMidYMid meet"
-            aria-hidden="true"
-          >
-            <defs>
-              <path id="arc-monde" d="M 15,135 A 1900,1900 0 0 1 985,135" fill="none" />
-            </defs>
-            <text
-              className="font-title"
-              fill="#f0dfd0"
-              fontSize="90"
-              fontWeight="700"
-              letterSpacing="0"
-              textAnchor="middle"
+          <Reveal distance={26}>
+            <svg
+              viewBox="0 0 1000 150"
+              className="mx-auto h-[clamp(95px,14vh,160px)] w-full max-w-[1300px]"
+              preserveAspectRatio="xMidYMid meet"
+              aria-hidden="true"
             >
-              <textPath href="#arc-monde" startOffset="50%">
-                NOTRE MONDE IDÉAL
-              </textPath>
-            </text>
-          </svg>
+              <defs>
+                <path
+                  id="arc-monde"
+                  d="M 15,135 A 1900,1900 0 0 1 985,135"
+                  fill="none"
+                />
+              </defs>
+              <text
+                className="font-title"
+                fill="#f0dfd0"
+                fontSize="90"
+                fontWeight="700"
+                letterSpacing="0"
+                textAnchor="middle"
+              >
+                <textPath href="#arc-monde" startOffset="50%">
+                  NOTRE MONDE IDÉAL
+                </textPath>
+              </text>
+            </svg>
+          </Reveal>
 
           <h2 className="sr-only">Notre monde idéal</h2>
 
@@ -193,7 +200,7 @@ function PanelContent({ panel }: { panel: Panel }) {
   return (
     <div className="flex h-full flex-col justify-center px-[5%] pb-24 lg:pb-32">
       <div className="mx-auto w-full max-w-[1300px]">
-        <div className="relative mb-3 lg:mb-6">
+        <Reveal className="relative mb-3 lg:mb-6">
           <div className="relative mx-auto w-full max-w-[600px] lg:mx-0 lg:w-[48%] lg:max-w-none">
             <svg
               viewBox="0 0 600 200"
@@ -235,36 +242,45 @@ function PanelContent({ panel }: { panel: Panel }) {
               />
             </svg>
 
-            <span style={{ fontFamily: "var(--font-script)" }} className="absolute bottom-[20px] left-0 z-30 rounded-2xl bg-gradient-to-b from-[#3d6ca8] to-[#1e4d8c] px-6 py-3 font-accent text-white shadow-[0_6px_0_0_#153a6b,0_10px_18px_rgba(0,0,0,0.28)] ring-1 ring-white/40 lg:px-8 lg:text-xl">
+            <span
+              style={{ fontFamily: "var(--font-script)" }}
+              className="absolute bottom-[20px] left-0 z-30 rounded-2xl bg-gradient-to-b from-[#3d6ca8] to-[#1e4d8c] px-6 py-3 font-accent text-white shadow-[0_6px_0_0_#153a6b,0_10px_18px_rgba(0,0,0,0.28)] ring-1 ring-white/40 lg:px-8 lg:text-xl"
+            >
               {panel.label}
             </span>
 
-           <span className="absolute right-[-20px] top-[18%] z-30 flex h-14 w-14 items-center justify-center rounded-full bg-[linear-gradient(to_bottom,#ffc94d,#f0a500)] text-sm font-bold text-white shadow-[0_6px_14px_rgba(120,70,0,0.18),0_2px_5px_rgba(120,70,0,0.10)] ring-[5px] ring-white lg:h-16 lg:w-16">
+            <span className="absolute right-[-20px] top-[18%] z-30 flex h-14 w-14 items-center justify-center rounded-full bg-[linear-gradient(to_bottom,#ffc94d,#f0a500)] text-sm font-bold text-white shadow-[0_6px_14px_rgba(120,70,0,0.18),0_2px_5px_rgba(120,70,0,0.10)] ring-[5px] ring-white lg:h-16 lg:w-16">
               {panel.kpi}
             </span>
           </div>
-        </div>
+        </Reveal>
 
         <div className="grid grid-cols-1 gap-5 lg:grid-cols-[1fr_1fr_auto] lg:items-start lg:gap-8">
-          <div className="text-[#3a3a3a]">
-            <p className="mb-3 font-body text-[17px] font-bold leading-snug lg:mb-4">
-              {panel.lead}
-            </p>
-            <p className="font-body text-[17px] leading-snug lg:text-justify">
-              {panel.body}
-            </p>
-          </div>
+          <Reveal delay={160}>
+            <div className="text-[#3a3a3a]">
+              <p className="mb-3 font-body text-[17px] font-bold leading-snug lg:mb-4">
+                {panel.lead}
+              </p>
+              <p className="font-body text-[17px] leading-snug lg:text-justify">
+                {panel.body}
+              </p>
+            </div>
+          </Reveal>
 
-          <p className="font-body text-[17px] leading-snug text-[#3a3a3a] lg:text-justify">
-            {panel.aside}
-          </p>
+          <Reveal delay={280}>
+            <p className="font-body text-[17px] leading-snug text-[#3a3a3a] lg:text-justify">
+              {panel.aside}
+            </p>
+          </Reveal>
 
-          <a
-            href="#"
-            className="self-start whitespace-nowrap rounded-2xl bg-[#8b3a32] px-5 py-3 text-center font-body text-[14px] font-bold leading-tight text-white no-underline transition hover:bg-[#732f28]"
-          >
-            {panel.cta}
-          </a>
+          <Reveal delay={400} className="self-start">
+            <a
+              href="#"
+              className="inline-block whitespace-nowrap rounded-2xl bg-[#8b3a32] px-5 py-3 text-center font-body text-[14px] font-bold leading-tight text-white no-underline transition hover:bg-[#732f28]"
+            >
+              {panel.cta}
+            </a>
+          </Reveal>
         </div>
       </div>
     </div>

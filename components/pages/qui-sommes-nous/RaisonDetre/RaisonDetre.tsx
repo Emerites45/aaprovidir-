@@ -1,3 +1,5 @@
+import { Reveal } from "@/components/ui/reveal";
+
 type Slide = {
   id: string;
   num: string;
@@ -68,7 +70,10 @@ function SlideContent({ slide }: { slide: Slide }) {
   return (
     <div className="flex min-h-screen flex-col justify-start px-[5%] pb-[30vh] pt-[70px] lg:pt-[90px]">
       <div className="mx-auto w-full max-w-[1400px]">
-        <div className="mb-6 mt-8 flex items-center gap-5 lg:mb-16 lg:mt-12">
+        <Reveal
+          from="left"
+          className="mb-6 mt-8 flex items-center gap-5 lg:mb-16 lg:mt-12"
+        >
           <span className="relative inline-flex h-12 w-12 items-center justify-center lg:h-14 lg:w-14">
             {/* Halo — le fondu se termine bien avant le bord du cercle */}
             <span
@@ -99,10 +104,12 @@ function SlideContent({ slide }: { slide: Slide }) {
           <span className="rounded-xl bg-[#30a036] px-5 py-2.5 font-title text-base font-bold text-white lg:px-6 lg:py-3 lg:text-lg">
             {slide.tag}
           </span>
-        </div>
+        </Reveal>
 
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16">
-          <div className="flex items-start gap-10 lg:pt-[60px]">
+          {/* Bloc script + illustration animé d'un seul tenant :
+              les deux enfants portent déjà des translate. */}
+          <Reveal delay={180} className="flex items-start gap-10 lg:pt-[60px]">
             <p
               style={{ fontFamily: "var(--font-script)" }}
               className="w-[46%] shrink-0 translate-x-[30px] text-right text-[clamp(1.4rem,2.5vw,2.4rem)] leading-relaxed text-[#0b1e3a]"
@@ -116,16 +123,18 @@ function SlideContent({ slide }: { slide: Slide }) {
               aria-hidden="true"
               className="w-[clamp(340px,36vw,580px)] shrink-0 -translate-x-[180px] -translate-y-[150px] select-none"
             />
-          </div>
+          </Reveal>
 
-          <div className="rounded-[24px] bg-gradient-to-br from-[#cfe8f7]/95 to-[#eaf6fd]/95 p-8 shadow-lg lg:p-11">
-            <p className="mb-5 font-body text-[clamp(1rem,1.5vw,1.4rem)] font-bold leading-snug text-[#111]">
-              {slide.lead}
-            </p>
-            <p className="font-body text-[clamp(0.9rem,1.2vw,1.15rem)] leading-relaxed text-[#1a1a1a] lg:text-justify">
-              {slide.body}
-            </p>
-          </div>
+          <Reveal from="right" delay={320}>
+            <div className="rounded-[24px] bg-gradient-to-br from-[#cfe8f7]/95 to-[#eaf6fd]/95 p-8 shadow-lg lg:p-11">
+              <p className="mb-5 font-body text-[clamp(1rem,1.5vw,1.4rem)] font-bold leading-snug text-[#111]">
+                {slide.lead}
+              </p>
+              <p className="font-body text-[clamp(0.9rem,1.2vw,1.15rem)] leading-relaxed text-[#1a1a1a] lg:text-justify">
+                {slide.body}
+              </p>
+            </div>
+          </Reveal>
         </div>
       </div>
     </div>
