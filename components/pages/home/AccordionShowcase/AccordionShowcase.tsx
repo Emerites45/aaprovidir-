@@ -1,3 +1,4 @@
+// components/pages/home/AccordionShowcase/AccordionShowcase.tsx
 "use client";
 
 import { useState } from "react";
@@ -6,20 +7,28 @@ import styles from "./AccordionShowcase.module.css";
 
 const SLIDES = [
   {
-    title: "Pineapple Smoothie",
-    text: "For a natural energy drink or a filling breakfast.",
+    title: "Industrie",
+    closedText:
+      "Des usines modernes aux chaînes de transformation, nous accompagnons les industriels dans la qualité et la traçabilité.",
+    text: "Des usines modernes aux chaînes de transformation, nous accompagnons les industriels dans la qualité et la traçabilité de leurs matières premières.",
     image:
-      "https://cdn.shortpixel.ai/spai2/w_1920+q_glossy+ret_img+to_webp/unlimited-elements.com/wp-content/uploads/2021/06/top-view-tropical-fruits-768x768.jpg",
+      "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=80",
   },
   {
     title: "Restaurant",
-    text: "L'ambiance du restaurant rappelle davantage une maison chaleureuse qu'une simple salle à manger.",
-    image: "/images/restaurant.jpg",
+    closedText:
+      "L'ambiance du restaurant rappelle une maison chaleureuse. Des produits frais, de la ferme à l'assiette.",
+    text: "L'ambiance du restaurant rappelle davantage une maison chaleureuse qu'une simple salle à manger. Des produits frais, directement de la ferme à l'assiette.",
+    image:
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80",
   },
   {
     title: "Agriculteur",
-    text: "Un champ bien entretenu ressemble davantage à une œuvre d'art qu'à une simple parcelle.",
-    image: "/images/agriculteur.jpg",
+    closedText:
+      "Un champ bien entretenu ressemble à une œuvre d'art. Nous valorisons le travail des producteurs locaux.",
+    text: "Un champ bien entretenu ressemble davantage à une œuvre d'art qu'à une simple parcelle. Nous valorisons le travail des producteurs locaux.",
+    image:
+      "https://images.unsplash.com/photo-1500937386664-56d7fcb0b6c2?auto=format&fit=crop&w=1200&q=80",
   },
 ];
 
@@ -35,10 +44,13 @@ export function AccordionShowcase() {
       </div>
 
       <div className={styles.inner}>
+        {/* Colonne texte */}
         <div className={styles.text}>
           <div className={styles.counter}>
             <span>{String(active + 1).padStart(2, "0")}</span>
-            <span className={styles.sep}>/{String(SLIDES.length).padStart(2, "0")}</span>
+            <span className={styles.sep}>
+              /{String(SLIDES.length).padStart(2, "0")}
+            </span>
           </div>
 
           <div className={styles.slideBox}>
@@ -59,28 +71,48 @@ export function AccordionShowcase() {
               className={styles.arrow}
               disabled={active === SLIDES.length - 1}
               aria-label="Suivant"
-              onClick={() => setActive((i) => Math.min(SLIDES.length - 1, i + 1))}
+              onClick={() =>
+                setActive((i) => Math.min(SLIDES.length - 1, i + 1))
+              }
             >
               <i className="bi bi-arrow-right" />
             </button>
           </div>
         </div>
 
+        {/* Cartes */}
         <div className={styles.images}>
           {SLIDES.map((slide, i) => (
-            <button
+            <div
               key={slide.title}
-              type="button"
               className={cn(styles.item, i === active && styles.itemActive)}
-              style={{ backgroundImage: `url('${slide.image}')` }}
-              onClick={() => setActive(i)}
+              style={
+                {
+                  "--bg-image": `url('${slide.image}')`,
+                } as React.CSSProperties
+              }
+              onMouseEnter={() => setActive(i)}
+              role="button"
+              tabIndex={0}
               aria-label={slide.title}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") setActive(i);
+              }}
             >
+              {/* Fond image (visible au hover) */}
+              <div className={styles.bgImage} />
+
+              {/* Texte horizontal — visible quand fermé */}
+              <div className={styles.closedText}>
+                <p>{slide.closedText}</p>
+              </div>
+
+              {/* Overlay — visible au hover */}
               <div className={styles.overlay}>
                 <h4>{slide.title}</h4>
-                <span className={styles.btn}>Savoir Plus</span>
+                <span className={styles.btn}>En savoir plus</span>
               </div>
-            </button>
+            </div>
           ))}
         </div>
       </div>

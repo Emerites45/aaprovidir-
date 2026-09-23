@@ -1,7 +1,7 @@
 // components/pages/home/ProductsCarousel/ProductsCarousel.tsx
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type CarouselItem = {
   id: number;
@@ -129,6 +129,9 @@ const items: CarouselItem[] = [
 ];
 
 export function ProductsCarousel() {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [isPaused, setIsPaused] = useState(false);
+
   useEffect(() => {
     const cards = document.querySelectorAll(".carousel-card");
 
@@ -151,11 +154,13 @@ export function ProductsCarousel() {
       if (!video) return;
 
       const handleEnter = () => {
+        setIsPaused(true); // stop le défilement
         video.currentTime = 0;
         video.play().catch(() => {});
       };
 
       const handleLeave = () => {
+        setIsPaused(false); // reprend le défilement
         video.pause();
       };
 
@@ -179,7 +184,13 @@ export function ProductsCarousel() {
 
   return (
     <section className="overflow-hidden py-14 md:py-20 bg-[#f5f3ef]">
-      <div className="flex gap-6 w-max animate-marquee hover:[animation-play-state:paused]">
+      <div
+        ref={trackRef}
+        className="flex gap-6 w-max animate-marquee"
+        style={{
+          animationPlayState: isPaused ? "paused" : "running",
+        }}
+      >
         {duplicatedItems.map((item, index) => (
           <div
             key={`${item.id}-${index}`}
@@ -195,7 +206,7 @@ export function ProductsCarousel() {
               hover:shadow-[0_24px_48px_-12px_rgba(27,40,30,0.28)]
             "
           >
-            {/* ===== FACE (avant hover) ===== */}
+            {/* FACE (avant hover) */}
             <div className="absolute inset-0 z-20 flex items-center justify-center gap-2.5 p-[22px] transition-opacity duration-300 group-hover:opacity-0">
               <div className="w-8 h-8 rounded-full bg-[#1b7a4a]/10 flex items-center justify-center text-[#1b7a4a]">
                 {item.icon}
@@ -205,9 +216,8 @@ export function ProductsCarousel() {
               </span>
             </div>
 
-            {/* ===== PANEL EXPAND (apres hover) ===== */}
+            {/* PANEL EXPAND (après hover) */}
             <div className="absolute inset-0 z-30 flex opacity-0 group-hover:opacity-100 transition-opacity duration-400 bg-white">
-              {/* Video */}
               <div className="flex-[1.1] relative overflow-hidden">
                 <video
                   muted
@@ -219,20 +229,16 @@ export function ProductsCarousel() {
                 />
               </div>
 
-              {/* Texte (nouvelle presentation) */}
               <div className="flex-1 px-[22px] py-[26px] flex flex-col justify-center border-l border-[#eef1ee]">
-                {/* Tag */}
                 <span className="text-[10.5px] font-bold tracking-[1px] uppercase text-[#1b7a4a] mb-2.5">
                   {item.tag}
                 </span>
 
-                {/* Titre + barre accent */}
                 <h3 className="text-[20px] font-bold tracking-[-0.3px] leading-[1.15] text-[#14532f] mb-2.5">
                   {item.title}
                   <span className="block w-7 h-[3px] bg-[#1b7a4a] rounded-sm mt-2" />
                 </h3>
 
-                {/* Description */}
                 <p className="text-[13px] leading-[1.6] text-[#4a5750] mt-3.5">
                   {item.description}
                 </p>
