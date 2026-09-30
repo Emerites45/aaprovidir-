@@ -1,14 +1,18 @@
+/* EcoPromise.module.css */
+
 .section {
   background: #fafbf3;
   padding: 60px 0 50px;
   overflow: hidden;
 }
+
 .header {
   max-width: 65%;
   margin: 0 auto 25px;
   padding: 0 5%;
   text-align: center;
 }
+
 .header h2 {
   font-weight: 700;
   font-size: 2rem;
@@ -16,32 +20,39 @@
   color: var(--color-dark-gray);
   margin-bottom: 20px;
 }
+
 .highlight {
   color: var(--color-blue-corporate);
 }
+
 .question {
   font-style: italic;
   font-weight: 600;
   font-size: 1.1rem;
   color: var(--color-cyan-innovation);
 }
+
 .curve {
   position: relative;
   width: 100%;
   line-height: 0;
   z-index: 2;
 }
+
 .curveTop {
   margin-bottom: -60px;
 }
+
 .curveBottom {
   margin-top: -120px;
 }
+
 .curve svg {
   display: block;
   width: 100%;
   height: auto;
 }
+
 .carousel {
   position: relative;
   width: 100%;
@@ -49,23 +60,18 @@
   overflow: hidden;
   bottom: 40px;
 }
+
 .track {
   display: flex;
   width: max-content;
   height: 100%;
   animation: scroll 50s linear infinite;
 }
+
 .track.paused {
   animation-play-state: paused;
 }
-.item {
-  flex: 0 0 auto;
-  width: 400px;
-  height: auto;
-  background-size: cover;
-  background-position: bottom;
-  margin-right: 6px;
-}
+
 @keyframes scroll {
   from {
     transform: translateX(0);
@@ -74,12 +80,90 @@
     transform: translateX(-50%);
   }
 }
+
+/* ===== Flip cards — retournement soft ===== */
+.flipCard {
+  flex: 0 0 auto;
+  width: 400px;
+  height: 100%;
+  margin-right: 6px;
+  perspective: 1400px;
+}
+
+.flipInner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.9s cubic-bezier(0.22, 0.61, 0.36, 1);
+  transform-style: preserve-3d;
+}
+
+.flipCard:hover .flipInner {
+  transform: rotateY(180deg);
+}
+
+.flipFront,
+.flipBack {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow: hidden;
+}
+
+.flipFront {
+  background-size: cover;
+  background-position: bottom;
+}
+
+.flipBack {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 36px 28px;
+  background: #0a2a5e;
+  transform: rotateY(180deg);
+  text-align: center;
+}
+
+.questionsList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+}
+
+.flipQuestion {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.88);
+  cursor: default;
+  transition:
+    font-size 0.35s cubic-bezier(0.22, 0.61, 0.36, 1),
+    color 0.3s ease,
+    transform 0.35s ease;
+}
+
+/* Hover sur une question → police plus grande */
+.flipQuestion:hover {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #fff;
+  transform: scale(1.03);
+}
+
+/* ===== Footer ===== */
 .footer {
   max-width: 60%;
   margin: 30px auto 0;
   padding: 0 5%;
   text-align: center;
 }
+
 .tagline {
   font-style: italic;
   font-weight: 600;
@@ -87,31 +171,63 @@
   color: var(--color-cyan-innovation);
   margin-bottom: 18px;
 }
+
 .final {
   font-size: 2rem;
   line-height: 1.6;
   color: var(--color-dark-gray);
 }
+
 .final strong {
   font-weight: 700;
   color: var(--color-blue-corporate);
 }
+
+/* ===== Responsive ===== */
 @media (max-width: 768px) {
   .carousel {
     height: 220px;
   }
-  .item {
+
+  .flipCard {
     width: 300px;
   }
+
   .header h2 {
     font-size: 1rem;
   }
+
   .final {
     font-size: 1rem;
   }
+
+  .flipQuestion {
+    font-size: 0.85rem;
+  }
+
+  .flipQuestion:hover {
+    font-size: 0.95rem;
+  }
+
+  .flipBack {
+    padding: 18px 14px;
+  }
+
+  .questionsList {
+    gap: 10px;
+  }
 }
+
 @media (prefers-reduced-motion: reduce) {
   .track {
     animation: none;
+  }
+
+  .flipInner {
+    transition: none;
+  }
+
+  .flipQuestion {
+    transition: none;
   }
 }

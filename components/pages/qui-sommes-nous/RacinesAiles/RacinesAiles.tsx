@@ -112,15 +112,14 @@ export function RacinesAiles() {
       <div className="flex flex-col gap-10 px-[5%] lg:flex-row lg:items-start lg:gap-12 lg:pl-[5%] lg:pr-0">
         <div className="shrink-0 lg:w-[250px] lg:pt-4">
           <Reveal from="left">
-            <h2 className="mb-5 font-title text-[clamp(26px,3.4vh,34px)] font-bold leading-tight text-[#0b438c] lg:mb-7">
+            <h2 className="mb-5 font-title text-[clamp(39px,5.7vh,51px)] font-bold leading-tight text-[#0b438c] lg:mb-7">
               Nos racines
-              <br />
               et nos ailes
             </h2>
           </Reveal>
 
           <Reveal from="left" delay={150}>
-            <p className="mb-7 font-body text-[clamp(14px,1.9vh,17px)] leading-relaxed text-[#3a3a3a] lg:mb-9">
+            <p className="mb-7 font-body text-[clamp(21px,2.85vh,26px)] leading-relaxed text-[#3a3a3a] lg:mb-9">
               Pourquoi nous existons, comment nous agissons, et ce en quoi nous
               croyons.
             </p>
@@ -187,7 +186,7 @@ export function RacinesAiles() {
                           opacity: isHovered ? 1 : 0,
                         }}
                       >
-                        <p className="max-w-[640px] font-body text-[clamp(13px,1.7vh,16px)] leading-relaxed text-white">
+                        <p className="max-w-[640px] font-body text-[clamp(21px,2.85vh,26px)] leading-relaxed text-white">
                           {card.description}
                         </p>
                       </div>

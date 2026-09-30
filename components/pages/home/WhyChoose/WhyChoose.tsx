@@ -108,10 +108,10 @@ export function WhyChoose() {
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/10 via-transparent to-transparent" />
 
-        <div className="absolute inset-0 flex flex-col justify-between px-6 py-16 md:px-12 lg:px-16 xl:px-20">
+        <div className="absolute inset-0 flex flex-col justify-between py-16">
           
-          {/* Titre */}
-          <div className="self-end max-w-xl text-right pt-24 md:pt-32 lg:pt-40">
+          {/* Titre — garde le padding horizontal */}
+          <div className="self-end max-w-xl text-right pt-24 md:pt-32 lg:pt-40 px-6 md:px-12 lg:px-16 xl:px-20">
             <h2 className="text-white text-2xl md:text-3xl lg:text-4xl font-bold leading-tight tracking-wide drop-shadow-lg">
               POURQUOI LES PLUS GRANDS
               <br />
@@ -122,8 +122,8 @@ export function WhyChoose() {
           {/* Zone basse */}
           <div className="w-full pb-2">
             
-            {/* ===== 05 BONNES RAISONS - BLEU + GRAND + CENTRÉ ===== */}
-            <div className="flex items-center justify-center gap-4 mb-8">
+            {/* Label centré — avec padding */}
+            <div className="flex items-center justify-center gap-4 mb-8 px-6">
               <div className="w-16 h-16 rounded-full bg-[#0066cc] flex items-center justify-center shadow-xl">
                 <span className="text-white font-bold text-2xl">05</span>
               </div>
@@ -132,15 +132,15 @@ export function WhyChoose() {
               </span>
             </div>
 
-            {/* Cartes */}
-            <div className="relative overflow-hidden w-full">
+            {/* ===== CARROUSEL PLEINE LARGEUR (bord à bord) ===== */}
+            <div className="relative w-screen left-1/2 -translate-x-1/2 overflow-hidden">
               <div className="group">
-                <div className="flex gap-5 animate-marquee-x group-hover:[animation-play-state:paused] w-max">
+                <div className="why-track flex gap-5 animate-marquee-x group-hover:[animation-play-state:paused] w-max">
                   {scrollingCards.map((reason, index) => (
                     <div
                       key={index}
                       className="
-                        flex-shrink-0 w-[300px] h-[460px]
+                        why-card flex-shrink-0 h-[460px]
                         relative overflow-hidden rounded-2xl
                         bg-white/[0.05] backdrop-blur-md
                         border border-white/12
@@ -152,7 +152,6 @@ export function WhyChoose() {
                       <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/6 via-transparent to-transparent pointer-events-none" />
                       
                       <div className="relative z-10 flex flex-col h-full">
-                        {/* Badges */}
                         <div className="flex items-center gap-2 px-6 pt-6 mb-4">
                           <span className={`px-2.5 py-0.5 rounded-full text-[11px] font-medium text-white ${reason.badge1Color}`}>
                             {reason.badge1}
@@ -162,10 +161,8 @@ export function WhyChoose() {
                           </span>
                         </div>
 
-                        {/* Séparateur pleine largeur */}
                         <div className="w-full h-px bg-white/20" />
 
-                        {/* Contenu */}
                         <div className="px-6 pt-4 pb-6 flex flex-col flex-1">
                           <h3 className="text-white text-[17px] font-semibold leading-snug mb-4 whitespace-pre-line">
                             {reason.title}
@@ -179,7 +176,6 @@ export function WhyChoose() {
                             ))}
                           </div>
 
-                          {/* Icône centrée et agrandie */}
                           <div className="mt-auto flex justify-center pb-2">
                             <div className="w-16 h-16 rounded-full border border-white/25 flex items-center justify-center text-lime-200/80">
                               {reason.icon}
@@ -197,12 +193,37 @@ export function WhyChoose() {
       </div>
 
       <style>{`
-        @keyframes marquee-x {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
+        /* Exactement 4 cartes sur 100vw (3 gaps de 1.25rem = 3.75rem) */
+        .why-card {
+          width: calc((100vw - 3.75rem) / 4);
         }
+
+        /* Track : largeur d'un set = 5 cartes + 4 gaps */
+        .why-track {
+          --card-w: calc((100vw - 3.75rem) / 4);
+          --gap: 1.25rem;
+          --set-w: calc(5 * var(--card-w) + 4 * var(--gap));
+        }
+
+        @keyframes marquee-x {
+          0%   { transform: translateX(0); }
+          100% { transform: translateX(calc(-1 * var(--set-w))); }
+        }
+
         .animate-marquee-x {
           animation: marquee-x 42s linear infinite;
+        }
+
+        /* Mobile : 2 cartes visibles */
+        @media (max-width: 767px) {
+          .why-card {
+            width: calc((100vw - 1.25rem) / 2);
+            height: 400px;
+          }
+          .why-track {
+            --card-w: calc((100vw - 1.25rem) / 2);
+            --set-w: calc(5 * var(--card-w) + 4 * var(--gap));
+          }
         }
       `}</style>
     </section>

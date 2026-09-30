@@ -22,52 +22,52 @@ export function QualityDeliverySection2() {
   return (
     <section className="w-full py-12 md:py-20" style={{ backgroundColor: "#f3fff8" }}>
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
-        
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-6">
           
           {/* ========== COLONNE GAUCHE ========== */}
           <div className="flex flex-col">
-            <h3 
-              className="text-[28px] md:text-[34px] font-semibold text-[#0b438c] mb-5"
+            <h3
+              className="text-[30px] md:text-[38px] font-semibold text-[#0b438c] mb-5"
               style={{ fontFamily: "VGA, sans-serif" }}
             >
               Nos process
             </h3>
 
+            {/* Image en fond + carte superposée (effet continuité) */}
             <div className="relative">
-              {/* Image */}
-              <div className="relative w-full aspect-[16/10] rounded-[28px] overflow-hidden">
+              {/* Image plus haute pour passer sous la carte */}
+              <div className="relative w-full aspect-[16/11] rounded-[28px] overflow-hidden">
                 <Image
                   src="/images/yoanananas.png"
                   alt="Nos process"
                   fill
-                  className="object-cover"
+                  className="object-cover object-top"
                   priority
                 />
               </div>
 
-              {/* Carte bleue qui remonte légèrement par-dessus l'image */}
-              <div className="relative -mt-8 md:-mt-10 z-10 overflow-hidden rounded-[28px] bg-[#0A2A5E] text-white h-[520px] md:h-[580px]">
-                <div className="absolute inset-x-0 top-[120px] bottom-0 overflow-hidden z-0">
+              {/* Carte qui recouvre le bas de l’image → continuité visuelle */}
+              <div className="relative mx-0 -mt-[28%] z-10 overflow-hidden rounded-[28px] bg-[#0A2A5E] text-white h-[520px] md:h-[580px]">
+                <div className="absolute inset-x-0 top-[130px] bottom-0 overflow-hidden z-0">
                   <ScrollingText words={leftWords} />
                 </div>
 
                 <div className="relative z-20 flex flex-col h-full">
                   <div className="flex justify-between items-start p-8 md:p-10 pb-0">
-                    <h2 className="text-[32px] md:text-[40px] font-semibold leading-[1.15] max-w-[280px]">
+                    <h2 className="text-[36px] md:text-[46px] font-semibold leading-[1.12] max-w-[300px]">
                       Nous monitorons<br />la qualité
                     </h2>
-                    <button className="bg-white text-[#0A2A5E] text-sm font-medium px-5 py-2.5 rounded-full hover:bg-blue-50 transition shrink-0">
+                    <button className="bg-white text-[#0A2A5E] text-[15px] font-medium px-6 py-3 rounded-full hover:bg-blue-50 transition shrink-0">
                       En savoir plus
                     </button>
                   </div>
 
-                  <div className="mt-auto relative w-full flex-1 min-h-0 scale-110 origin-bottom">
+                  <div className="mt-auto relative w-full h-[62%] min-h-0">
                     <Image
                       src="/images/quality-man.png"
                       alt="Contrôle qualité"
                       fill
-                      className="object-contain object-bottom"
+                      className="object-contain object-bottom scale-110 origin-bottom"
                       priority
                     />
                   </div>
@@ -78,54 +78,52 @@ export function QualityDeliverySection2() {
 
           {/* ========== COLONNE DROITE ========== */}
           <div className="flex flex-col">
-            <h3 
-              className="text-[28px] md:text-[34px] font-semibold text-[#0b438c] mb-5"
+            <h3
+              className="text-[30px] md:text-[38px] font-semibold text-[#0b438c] mb-5"
               style={{ fontFamily: "VGA, sans-serif" }}
             >
               Vos standards
             </h3>
 
             <div className="relative">
-              {/* Image */}
-              <div className="relative w-full aspect-[16/10] rounded-[28px] overflow-hidden">
+              <div className="relative w-full aspect-[16/11] rounded-[28px] overflow-hidden">
                 <Image
                   src="/images/labo.png"
                   alt="Vos standards"
                   fill
-                  className="object-cover"
+                  className="object-cover object-top"
                   priority
                 />
               </div>
 
-              {/* Carte bleue qui remonte légèrement par-dessus l'image */}
-              <div className="relative -mt-8 md:-mt-10 z-10 overflow-hidden rounded-[28px] bg-[#0A2A5E] text-white h-[520px] md:h-[580px]">
-                <div className="absolute inset-x-0 top-[120px] bottom-0 overflow-hidden z-0">
+              <div className="relative mx-0 -mt-[28%] z-10 overflow-hidden rounded-[28px] bg-[#0A2A5E] text-white h-[520px] md:h-[580px]">
+                <div className="absolute inset-x-0 top-[130px] bottom-0 overflow-hidden z-0">
                   <ScrollingText words={rightWords} direction="left" />
                 </div>
 
                 <div className="relative z-20 flex flex-col h-full">
                   <div className="flex justify-between items-start p-8 md:p-10 pb-0">
-                    <h2 className="text-[32px] md:text-[40px] font-semibold leading-[1.15] max-w-[240px]">
+                    <h2 className="text-[36px] md:text-[46px] font-semibold leading-[1.12] max-w-[260px]">
                       Livrée dans<br />votre
                     </h2>
-                    <button className="border border-white/50 text-white text-sm font-medium px-5 py-2.5 rounded-full hover:bg-white/10 transition shrink-0">
+                    <button className="border border-white/50 text-white text-[15px] font-medium px-6 py-3 rounded-full hover:bg-white/10 transition shrink-0">
                       Capter plus
                     </button>
                   </div>
 
-                  <div className="mt-auto relative w-full flex-1 min-h-0 scale-110 origin-bottom">
+                  <div className="mt-auto relative w-full h-[62%] min-h-0">
                     <Image
                       src="/images/delivery-man.png"
                       alt="Livraison fraîche"
                       fill
-                      className="object-contain object-bottom"
+                      className="object-contain object-bottom scale-110 origin-bottom"
                       priority
                     />
 
-                    <div className="absolute bottom-[18%] left-1/2 -translate-x-1/2 w-[180px] h-[180px] rounded-full bg-yellow-400/30 blur-2xl -z-10 pointer-events-none" />
+                    <div className="absolute bottom-[14%] left-1/2 -translate-x-1/2 w-[200px] h-[200px] rounded-full bg-yellow-400/30 blur-2xl -z-10 pointer-events-none" />
 
                     <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-30">
-                      <button className="bg-white text-[#0A2A5E] text-sm font-medium px-8 py-3 rounded-full hover:bg-blue-50 transition shadow-lg">
+                      <button className="bg-white text-[#0A2A5E] text-[15px] font-medium px-8 py-3.5 rounded-full hover:bg-blue-50 transition shadow-lg">
                         Découvrir
                       </button>
                     </div>
@@ -141,7 +139,6 @@ export function QualityDeliverySection2() {
   );
 }
 
-/* ========== Texte défilant ========== */
 function ScrollingText({
   words,
   direction = "right",
@@ -189,7 +186,10 @@ function ScrollingText({
   const duplicated = [...words, ...words, ...words, ...words];
 
   return (
-    <div ref={containerRef} className="absolute inset-0 overflow-hidden pointer-events-none select-none">
+    <div
+      ref={containerRef}
+      className="absolute inset-0 overflow-hidden pointer-events-none select-none"
+    >
       <div
         className={`absolute inset-0 flex flex-col justify-center gap-y-5
           ${direction === "left" ? "animate-marquee-left" : "animate-marquee-right"}
@@ -211,16 +211,18 @@ function ScrollingText({
             >
               {duplicated.map((word, i) => {
                 const originalIndex = i % words.length;
-                const isActive = activeIdx !== undefined && originalIndex === activeIdx;
+                const isActive =
+                  activeIdx !== undefined && originalIndex === activeIdx;
 
                 return (
                   <span
                     key={`${row}-${i}`}
                     className={`
                       transition-all duration-700 ease-out px-2.5 py-0.5 rounded-full
-                      ${isActive
-                        ? "text-white bg-white/20 border border-white/50 shadow-[0_0_14px_rgba(255,255,255,0.45)] scale-105"
-                        : "text-white/25 border border-transparent"
+                      ${
+                        isActive
+                          ? "text-white bg-white/20 border border-white/50 shadow-[0_0_14px_rgba(255,255,255,0.45)] scale-105"
+                          : "text-white/25 border border-transparent"
                       }
                     `}
                   >
