@@ -8,9 +8,9 @@ import styles from "./Header.module.css";
 const LINKS = [
   { href: "/", label: "Accueil" },
   { href: "/qui-sommes-nous", label: "Notre Identité" },
+  { href: "/nos-solutions", label: "Nos Solutions" },
   { href: "#", label: "Nos Produits" },
   { href: "#", label: "Aagriflow" },
-  { href: "#", label: "Blog" },
 ];
 
 export function Header() {
