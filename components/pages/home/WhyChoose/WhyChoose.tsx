@@ -16,7 +16,7 @@ const reasons = [
       "Bulletin qualité fourni avec chaque lot",
     ],
     icon: (
-      <svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+      <svg className="w-11 h-11" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
     ),
@@ -33,7 +33,7 @@ const reasons = [
       "Bulletin qualité fourni avec chaque lot",
     ],
     icon: (
-      <svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+      <svg className="w-11 h-11" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M6.633 10.25c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 012.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 00.322-1.672V2.75a.75.75 0 01.75-.75 2.25 2.25 0 012.25 2.25c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282h3.126c1.026 0 1.945.694 2.166 1.668.172.787.186 1.598.186 2.413 0 .756-.068 1.504-.196 2.24-.145.845-.521 1.66-1.084 2.318-.563.658-1.306 1.15-2.14 1.42a9.04 9.04 0 01-3.166.576H9.75a.75.75 0 01-.75-.75v-4.5z" />
       </svg>
     ),
@@ -50,7 +50,7 @@ const reasons = [
       "Bulletin qualité fourni avec chaque lot",
     ],
     icon: (
-      <svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+      <svg className="w-11 h-11" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
     ),
@@ -67,7 +67,7 @@ const reasons = [
       "Bulletin qualité fourni avec chaque lot",
     ],
     icon: (
-      <svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+      <svg className="w-11 h-11" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
     ),
@@ -84,7 +84,7 @@ const reasons = [
       "Bulletin qualité fourni avec chaque lot",
     ],
     icon: (
-      <svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+      <svg className="w-11 h-11" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M6.633 10.25c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 012.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 00.322-1.672V2.75a.75.75 0 01.75-.75 2.25 2.25 0 012.25 2.25c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282h3.126c1.026 0 1.945.694 2.166 1.668.172.787.186 1.598.186 2.413 0 .756-.068 1.504-.196 2.24-.145.845-.521 1.66-1.084 2.318-.563.658-1.306 1.15-2.14 1.42a9.04 9.04 0 01-3.166.576H9.75a.75.75 0 01-.75-.75v-4.5z" />
       </svg>
     ),
@@ -110,7 +110,6 @@ export function WhyChoose() {
 
         <div className="absolute inset-0 flex flex-col justify-between py-16">
           
-          {/* Titre — garde le padding horizontal */}
           <div className="self-end max-w-xl text-right pt-24 md:pt-32 lg:pt-40 px-6 md:px-12 lg:px-16 xl:px-20">
             <h2 className="text-white text-2xl md:text-3xl lg:text-4xl font-bold leading-tight tracking-wide drop-shadow-lg">
               POURQUOI LES PLUS GRANDS
@@ -119,10 +118,8 @@ export function WhyChoose() {
             </h2>
           </div>
 
-          {/* Zone basse */}
           <div className="w-full pb-2">
             
-            {/* Label centré — avec padding */}
             <div className="flex items-center justify-center gap-4 mb-8 px-6">
               <div className="w-16 h-16 rounded-full bg-[#0066cc] flex items-center justify-center shadow-xl">
                 <span className="text-white font-bold text-2xl">05</span>
@@ -132,7 +129,6 @@ export function WhyChoose() {
               </span>
             </div>
 
-            {/* ===== CARROUSEL PLEINE LARGEUR (bord à bord) ===== */}
             <div className="relative w-screen left-1/2 -translate-x-1/2 overflow-hidden">
               <div className="group">
                 <div className="why-track flex gap-5 animate-marquee-x group-hover:[animation-play-state:paused] w-max">
@@ -152,32 +148,36 @@ export function WhyChoose() {
                       <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/6 via-transparent to-transparent pointer-events-none" />
                       
                       <div className="relative z-10 flex flex-col h-full">
-                        <div className="flex items-center gap-2 px-6 pt-6 mb-4">
-                          <span className={`px-2.5 py-0.5 rounded-full text-[11px] font-medium text-white ${reason.badge1Color}`}>
+                        {/* Badges agrandis */}
+                        <div className="flex items-center gap-2.5 px-7 pt-7 mb-5">
+                          <span className={`px-3.5 py-1 rounded-full text-[13px] font-semibold text-white ${reason.badge1Color}`}>
                             {reason.badge1}
                           </span>
-                          <span className="px-2.5 py-0.5 rounded-full text-[11px] font-medium text-white/90 bg-white/10 border border-white/15">
+                          <span className="px-3.5 py-1 rounded-full text-[13px] font-semibold text-white/90 bg-white/10 border border-white/15">
                             {reason.badge2}
                           </span>
                         </div>
 
                         <div className="w-full h-px bg-white/20" />
 
-                        <div className="px-6 pt-4 pb-6 flex flex-col flex-1">
-                          <h3 className="text-white text-[17px] font-semibold leading-snug mb-4 whitespace-pre-line">
+                        <div className="px-7 pt-5 pb-7 flex flex-col flex-1">
+                          {/* Titre agrandi */}
+                          <h3 className="text-white text-[22px] md:text-[24px] font-semibold leading-snug mb-5 whitespace-pre-line">
                             {reason.title}
                           </h3>
 
-                          <div className="space-y-1.5 mb-4">
+                          {/* Points agrandis */}
+                          <div className="space-y-2.5 mb-5">
                             {reason.points.map((point, i) => (
-                              <p key={i} className="text-white/65 text-[13px] leading-relaxed">
+                              <p key={i} className="text-white/70 text-[15px] md:text-[16px] leading-relaxed">
                                 {point}
                               </p>
                             ))}
                           </div>
 
-                          <div className="mt-auto flex justify-center pb-2">
-                            <div className="w-16 h-16 rounded-full border border-white/25 flex items-center justify-center text-lime-200/80">
+                          {/* Icône agrandie */}
+                          <div className="mt-auto flex justify-center pb-1">
+                            <div className="w-[72px] h-[72px] rounded-full border border-white/25 flex items-center justify-center text-lime-200/80">
                               {reason.icon}
                             </div>
                           </div>
@@ -193,12 +193,10 @@ export function WhyChoose() {
       </div>
 
       <style>{`
-        /* Exactement 4 cartes sur 100vw (3 gaps de 1.25rem = 3.75rem) */
         .why-card {
           width: calc((100vw - 3.75rem) / 4);
         }
 
-        /* Track : largeur d'un set = 5 cartes + 4 gaps */
         .why-track {
           --card-w: calc((100vw - 3.75rem) / 4);
           --gap: 1.25rem;
@@ -214,11 +212,10 @@ export function WhyChoose() {
           animation: marquee-x 42s linear infinite;
         }
 
-        /* Mobile : 2 cartes visibles */
         @media (max-width: 767px) {
           .why-card {
             width: calc((100vw - 1.25rem) / 2);
-            height: 400px;
+            height: 420px;
           }
           .why-track {
             --card-w: calc((100vw - 1.25rem) / 2);
