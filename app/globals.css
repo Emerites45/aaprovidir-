@@ -169,8 +169,8 @@
 
 @keyframes diagonal-fall {
   0% {
-    top: -12%;
-    left: -10%;
+    top: 100%;
+    right: -10%;
     opacity: 0;
   }
   8% {
@@ -180,8 +180,8 @@
     opacity: 1;
   }
   100% {
-    top: 78%;
-    left: 105%;
+    top: -25%;
+    right: 105%;
     opacity: 0;
   }
 }

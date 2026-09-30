@@ -1,23 +1,26 @@
 .section {
-  background:
-    url("/images/solution/background-racines.png");
+  background: url("/images/solution/background-racines.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   padding: 90px 5%;
 }
+
 .header {
   text-align: center;
   margin-bottom: 60px;
 }
+
 .header h1 {
   font-weight: 700;
   font-size: 2.8rem;
   color: var(--color-blue-corporate);
 }
+
 .header span {
   color: #0062cc;
 }
+
 .inner {
   max-width: 1400px;
   margin: 0 auto;
@@ -25,40 +28,48 @@
   align-items: center;
   gap: 60px;
 }
+
 .text {
   flex: 0 0 320px;
 }
+
 .counter {
   font-size: 2.2rem;
   font-weight: 700;
   color: var(--color-blue-corporate);
   margin-bottom: 25px;
 }
+
 .sep {
   font-size: 1rem;
   font-weight: 400;
   color: var(--color-dark-gray);
   margin-left: 4px;
 }
+
 .slideBox {
   min-height: 140px;
   margin-bottom: 30px;
 }
+
 .slideBox h3 {
   font-weight: 700;
   font-size: 1.8rem;
   color: var(--color-blue-corporate);
   margin-bottom: 15px;
 }
+
 .slideBox p {
   color: var(--color-dark-gray);
   font-size: 1rem;
   line-height: 1.6;
 }
+
 .nav {
   display: flex;
   gap: 12px;
 }
+
 .arrow {
   width: 48px;
   height: 48px;
@@ -73,21 +84,25 @@
   cursor: pointer;
   transition: background 0.3s, color 0.3s, border-color 0.3s;
 }
+
 .arrow:hover:not(:disabled) {
   background: var(--color-blue-corporate);
   color: white;
   border-color: var(--color-blue-corporate);
 }
+
 .arrow:disabled {
   opacity: 0.35;
   cursor: not-allowed;
 }
+
 .images {
   flex: 1;
   display: flex;
   gap: 10px;
   height: 480px;
 }
+
 .item {
   flex: 1;
   border-radius: 20px;
@@ -100,9 +115,12 @@
   padding: 0;
   transition: flex-grow 0.6s ease;
 }
+
 .itemActive {
   flex-grow: 4;
 }
+
+/* Overlay toujours visible avec fond subtil pour lisibilité */
 .overlay {
   position: absolute;
   inset: 0;
@@ -111,28 +129,99 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  background: linear-gradient(180deg, rgba(13, 44, 84, 0) 40%, rgba(13, 44, 84, 0.55) 100%);
-  opacity: 0;
-  transition: opacity 0.5s ease 0.15s;
-}
-.itemActive .overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(13, 44, 84, 0.15) 0%,
+    rgba(13, 44, 84, 0.45) 100%
+  );
   opacity: 1;
+  transition: background 0.5s ease;
+  padding: 1rem;
 }
+
+/* Titre en mode vertical par défaut (carte fermée) */
 .overlay h4 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-90deg);
+  transform-origin: center center;
+  white-space: nowrap;
   font-weight: 700;
-  font-size: 1.8rem;
+  font-size: 1.1rem;
   color: white;
-  margin-bottom: 5px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              font-size 0.4s ease;
+  width: max-content;
+  margin: 0;
 }
+
+/* Animation subtile pour indiquer l'interactivité */
+.item:not(.itemActive):not(:hover) .overlay h4 {
+  animation: gentlePulse 3s ease-in-out infinite;
+}
+
+@keyframes gentlePulse {
+  0%, 100% { opacity: 0.85; }
+  50% { opacity: 1; }
+}
+
+/* Bouton "Savoir Plus" CACHÉ par défaut */
 .btn {
-  margin-top: 20px;
+  margin-top: 70px;
   color: white;
   font-size: 0.9rem;
   font-weight: 600;
   border: 1.5px solid white;
   border-radius: 30px;
   padding: 10px 26px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(15px);
+  transition: opacity 0.4s ease 0.15s, transform 0.4s ease 0.15s;
 }
+
+/* === État hover : titre horizontal + bouton visible === */
+.item:hover .overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(13, 44, 84, 0.3) 0%,
+    rgba(13, 44, 84, 0.65) 100%
+  );
+}
+
+.item:hover .overlay h4 {
+  transform: translate(-50%, -50%) rotate(0deg);
+  font-size: 1.35rem;
+}
+
+.item:hover .btn {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* === État actif (clic) : même comportement que hover === */
+.itemActive .overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(13, 44, 84, 0.3) 0%,
+    rgba(13, 44, 84, 0.65) 100%
+  );
+}
+
+.itemActive .overlay h4 {
+  transform: translate(-50%, -50%) rotate(0deg);
+  font-size: 1.35rem;
+}
+
+.itemActive .btn {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
 @media (max-width: 992px) {
   .inner {
     flex-direction: column;
@@ -145,5 +234,15 @@
   .images {
     width: 100%;
     height: 380px;
+  }
+  
+  /* Sur mobile, titre un peu plus petit en mode vertical */
+  .overlay h4 {
+    font-size: 0.95rem;
+  }
+  
+  .item:hover .overlay h4,
+  .itemActive .overlay h4 {
+    font-size: 1.15rem;
   }
 }

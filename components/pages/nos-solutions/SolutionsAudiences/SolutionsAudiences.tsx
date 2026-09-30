@@ -71,7 +71,7 @@ export function SolutionsAudiences() {
             </p>
 
             {/* Texte dynamique lié à la slide active avec transition fluide */}
-            <div className="min-h-[70px] border-l-4 border-[#ffca3c] pl-4 py-1 mb-8 bg-amber-50/50 rounded-r-xl transition-all duration-500">
+            <div className="min-h-[70px]  pl-4 py-1 mb-8 bg-amber-50/50 rounded-r-xl transition-all duration-500">
               <span className="block text-xs font-bold uppercase tracking-wider text-[#0b438c] mb-1">
                 Focus : {SLIDES[active].title}
               </span>
@@ -81,7 +81,8 @@ export function SolutionsAudiences() {
               >
                 {SLIDES[active].text}
               </p>
-            </div>
+            </div> 
+            
           </div>
 
           <div>
@@ -89,7 +90,7 @@ export function SolutionsAudiences() {
               href="#"
               className="mt-2 inline-block rounded-full bg-[#ffca3c] px-6 py-4 font-body text-sm font-bold text-white text-center no-underline shadow-[0_4px_14px_rgba(255,202,60,0.45)] transition-all duration-300 hover:bg-[#f0b92c] hover:scale-105 active:scale-95"
             >
-              Je découvre la solution adaptée à mon métier
+              Cliquez sur votre profil
             </a>
           </div>
 
