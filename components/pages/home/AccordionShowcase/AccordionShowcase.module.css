@@ -1,5 +1,16 @@
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 .section {
-  background: var(--color-off-white);
+  background: var(--color-off-white, #fafbf3);
   padding: 90px 5%;
 }
 
@@ -38,33 +49,16 @@
 }
 
 .sep {
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 400;
   color: var(--color-dark-gray);
   margin-left: 4px;
 }
 
-.slideBox {
-  min-height: 140px;
-  margin-bottom: 30px;
-}
-
-.slideBox h3 {
-  font-weight: 700;
-  font-size: 1.8rem;
-  color: var(--color-blue-corporate);
-  margin-bottom: 15px;
-}
-
-.slideBox p {
-  color: var(--color-dark-gray);
-  font-size: 1rem;
-  line-height: 1.6;
-}
-
 .nav {
   display: flex;
   gap: 12px;
+  margin-top: 24px;
 }
 
 .arrow {
@@ -100,16 +94,16 @@
   height: 480px;
 }
 
-/* ===== CARTE ===== */
 .item {
   flex: 1;
   border-radius: 20px;
+  background-size: cover;
+  background-position: center;
   position: relative;
   cursor: pointer;
   overflow: hidden;
   border: none;
   padding: 0;
-  background: #0d2c54;
   transition: flex-grow 0.6s ease;
 }
 
@@ -117,54 +111,10 @@
   flex-grow: 4;
 }
 
-/* Image de fond */
-.bgImage {
-  position: absolute;
-  inset: 0;
-  background-image: var(--bg-image);
-  background-size: cover;
-  background-position: center;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-  z-index: 0;
-}
-
-.itemActive .bgImage {
-  opacity: 1;
-}
-
-/* ===== TEXTE HORIZONTAL sur la carte fermée ===== */
-.closedText {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 28px 18px;
-  pointer-events: none;
-  opacity: 1;
-  transition: opacity 0.35s ease;
-}
-
-.closedText p {
-  font-size: 13px;
-  font-weight: 500;
-  line-height: 1.55;
-  color: rgba(255, 255, 255, 0.92);
-  text-align: center;
-}
-
-/* Cache le texte quand la carte s’ouvre */
-.itemActive .closedText {
-  opacity: 0;
-}
-
-/* ===== OVERLAY (titre + bouton) ===== */
+/* Overlay */
 .overlay {
   position: absolute;
   inset: 0;
-  z-index: 3;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -172,35 +122,86 @@
   text-align: center;
   background: linear-gradient(
     180deg,
-    rgba(13, 44, 84, 0) 40%,
-    rgba(13, 44, 84, 0.6) 100%
+    rgba(13, 44, 84, 0.15) 0%,
+    rgba(13, 44, 84, 0.45) 100%
   );
-  opacity: 0;
-  transition: opacity 0.45s ease 0.1s;
-}
-
-.itemActive .overlay {
   opacity: 1;
+  transition: background 0.5s ease;
+  padding: 1rem;
 }
 
+/* Titre vertical (carte fermée) */
 .overlay h4 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-90deg);
+  transform-origin: center center;
+  white-space: nowrap;
   font-weight: 700;
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   color: white;
-  margin-bottom: 5px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    font-size 0.4s ease;
+  width: max-content;
+  margin: 0;
 }
 
+/* Légère pulsation quand la carte n'est ni active ni hover */
+.item:not(.itemActive):not(:hover) .overlay h4 {
+  animation: gentlePulse 3s ease-in-out infinite;
+}
+
+@keyframes gentlePulse {
+  0%,
+  100% {
+    opacity: 0.85;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Bouton caché par défaut */
 .btn {
-  margin-top: 20px;
+  margin-top: 80px;
   color: white;
-  font-size: 0.9rem;
+  font-size: 1.05rem;
   font-weight: 600;
   border: 1.5px solid white;
   border-radius: 30px;
-  padding: 10px 26px;
+  padding: 12px 30px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(15px);
+  transition: opacity 0.4s ease 0.15s, transform 0.4s ease 0.15s;
 }
 
-/* ===== RESPONSIVE ===== */
+/* Hover / actif */
+.item:hover .overlay,
+.itemActive .overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(13, 44, 84, 0.3) 0%,
+    rgba(13, 44, 84, 0.65) 100%
+  );
+}
+
+.item:hover .overlay h4,
+.itemActive .overlay h4 {
+  transform: translate(-50%, -50%) rotate(0deg);
+  font-size: 1.75rem;
+}
+
+.item:hover .btn,
+.itemActive .btn {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Mobile */
 @media (max-width: 992px) {
   .inner {
     flex-direction: column;
@@ -213,11 +214,35 @@
   }
 
   .images {
+    flex: none;
     width: 100%;
-    height: 380px;
+    height: 440px;
+    gap: 0;
+    touch-action: pan-y;
   }
 
-  .closedText p {
-    font-size: 12px;
+  .item:not(.itemActive) {
+    display: none;
+  }
+
+  .itemActive {
+    flex: 1;
+    width: 100%;
+    animation: cardIn 0.45s ease;
+  }
+
+  .overlay h4,
+  .itemActive .overlay h4 {
+    font-size: 1.4rem;
+    white-space: normal;
+    width: 80%;
+    line-height: 1.25;
+    transform: translate(-50%, -50%) rotate(0deg); /* horizontal sur mobile */
+  }
+
+  .btn {
+    margin-top: 110px;
+    font-size: 0.95rem;
+    padding: 10px 22px;
   }
 }

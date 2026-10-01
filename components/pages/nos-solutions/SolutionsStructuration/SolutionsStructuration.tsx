@@ -53,11 +53,11 @@ export function SolutionsStructuration() {
         
         {/* Colonne gauche */}
         <div className={`transition-all duration-1000 ease-out ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"}`}>
-          <span className="inline-block rounded-full bg-[#f4c430] px-4 py-1.5 text-sm font-bold text-white shadow-sm animate-pulse">
+          <span className="inline-block rounded-full bg-[#f4c430] px-4 py-1.5 text-base font-bold text-white shadow-sm animate-pulse">
             Solution 2
           </span>
 
-          <h2 className="mt-6 text-3xl font-extrabold leading-tight text-[#1f1f1f] md:text-4xl">
+          <h2 className="mt-6 text-4xl font-extrabold leading-tight text-[#1f1f1f] md:text-5xl">
             Une structuration
             <br />
             <span className="text-[#5f7600] inline-block">sans vous déposséder</span>
@@ -75,7 +75,7 @@ export function SolutionsStructuration() {
                 }}
               >
                 <LeafIcon />
-                <p className="pt-2 text-lg leading-snug text-[#1f1f1f]">{text}</p>
+                <p className="pt-2 text-xl leading-snug text-[#1f1f1f]">{text}</p>
               </li>
             ))}
           </ul>
@@ -89,13 +89,13 @@ export function SolutionsStructuration() {
           >
             <Link
               href="#"
-              className="rounded-full bg-[#5f7600] px-6 py-3 font-bold text-white shadow-md transition-all duration-300 hover:bg-[#4c5e00] hover:scale-105 active:scale-95"
+              className="rounded-full bg-[#5f7600] px-6 py-3 text-lg font-bold text-white shadow-md transition-all duration-300 hover:bg-[#4c5e00] hover:scale-105 active:scale-95"
             >
               Commencer
             </Link>
             <Link
               href="#"
-              className="rounded-full bg-[#3f5e00] px-6 py-3 font-bold text-white shadow-md transition-all duration-300 hover:bg-[#324b00] hover:scale-105 active:scale-95 flex items-center gap-2 group"
+              className="rounded-full bg-[#3f5e00] px-6 py-3 text-lg font-bold text-white shadow-md transition-all duration-300 hover:bg-[#324b00] hover:scale-105 active:scale-95 flex items-center gap-2 group"
             >
               <span>Discutons</span>
               <span className="transition-transform duration-300 group-hover:translate-x-1">--)</span>
@@ -154,8 +154,8 @@ export function SolutionsStructuration() {
             <div className="absolute inset-4 rounded-full border border-dashed border-[#5f7600]/20 animate-spin duration-[20s]" />
 
             <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-              <span className="text-2xl font-extrabold text-[#1f1f1f]">11 weeks</span>
-              <span className="text-xs text-[#6b6b6b]">Total</span>
+              <span className="text-3xl font-extrabold text-[#1f1f1f]">11 weeks</span>
+              <span className="text-sm text-[#6b6b6b]">Total</span>
             </div>
           </div>
 
@@ -171,12 +171,12 @@ export function SolutionsStructuration() {
                 animation: isVisible ? `sr-float-badge ${5 + i}s ease-in-out infinite ${i * 0.5}s` : "none"
               }}
             >
-              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#f4e04d] text-xs font-bold text-[#1f1f1f]">
+              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#f4e04d] text-sm font-bold text-[#1f1f1f]">
                 ↗
               </span>
               <div className="leading-tight pr-1">
-                <p className="text-[11px] text-[#6b6b6b]">{step.week}</p>
-                <p className="text-xs font-semibold text-[#1f1f1f]">{step.label}</p>
+                <p className="text-xs text-[#6b6b6b]">{step.week}</p>
+                <p className="text-sm font-semibold text-[#1f1f1f]">{step.label}</p>
               </div>
             </div>
           ))}
