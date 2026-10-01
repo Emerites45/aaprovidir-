@@ -1,0 +1,52 @@
+.shimmer-btn {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.shimmer-btn::after {
+  content: "";
+  position: absolute;
+  inset: -100% -60%;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    115deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.08) 44%,
+    rgba(255, 255, 255, 0.55) 49%,
+    rgba(255, 255, 255, 0.12) 54%,
+    transparent 58%
+  );
+  transform: translateX(-75%);
+  animation: hero-shimmer 4s ease-in-out infinite;
+}
+
+.shimmer-light::after {
+  background: linear-gradient(
+    115deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.05) 43%,
+    rgba(255, 255, 255, 0.95) 49%,
+    rgba(255, 255, 255, 0.18) 54%,
+    transparent 58%
+  );
+}
+
+@keyframes hero-shimmer {
+  0%,
+  15% {
+    transform: translateX(-75%);
+  }
+
+  65%,
+  100% {
+    transform: translateX(75%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shimmer-btn::after {
+    animation: none;
+  }
+}
