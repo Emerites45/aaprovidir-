@@ -28,11 +28,11 @@ export function SolutionsEducation() {
       <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 md:grid-cols-2">
         {/* Colonne gauche */}
         <div>
-          <span className="inline-block rounded-full bg-[#f4c430] px-4 py-1.5 text-sm font-bold text-white">
+          <span className="inline-block rounded-full bg-[#f4c430] px-4 py-1.5 text-base font-bold text-white">
             Solution 2
           </span>
 
-          <h2 className="mt-6 text-3xl font-extrabold leading-tight text-[#1f1f1f] md:text-4xl">
+          <h2 className="mt-6 text-4xl font-extrabold leading-tight text-[#1f1f1f] md:text-5xl">
             Une structuration
             <br />
             <span className="text-[#5f7600]">sans vous déposséder</span>
@@ -42,7 +42,7 @@ export function SolutionsEducation() {
             {BULLETS.map((text, i) => (
               <li key={i} className="flex items-start gap-4">
                 <LeafIcon />
-                <p className="pt-2 text-lg leading-snug text-[#1f1f1f]">{text}</p>
+                <p className="pt-2 text-xl leading-snug text-[#1f1f1f]">{text}</p>
               </li>
             ))}
           </ul>
@@ -50,13 +50,13 @@ export function SolutionsEducation() {
           <div className="mt-10 flex flex-wrap gap-4">
             <Link
               href="#"
-              className="rounded-full bg-[#5f7600] px-6 py-3 font-bold text-white hover:bg-[#4c5e00]"
+              className="rounded-full bg-[#5f7600] px-6 py-3 text-lg font-bold text-white hover:bg-[#4c5e00]"
             >
               Commencer
             </Link>
             <Link
               href="#"
-              className="rounded-full bg-[#3f5e00] px-6 py-3 font-bold text-white hover:bg-[#324b00]"
+              className="rounded-full bg-[#3f5e00] px-6 py-3 text-lg font-bold text-white hover:bg-[#324b00]"
             >
               Discutons --)
             </Link>
@@ -106,8 +106,8 @@ export function SolutionsEducation() {
               />
             </svg>
             <div className="absolute inset-0 flex flex-col items-center justify-center">
-              <span className="text-2xl font-extrabold text-[#1f1f1f]">11 weeks</span>
-              <span className="text-xs text-[#6b6b6b]">Total</span>
+              <span className="text-3xl font-extrabold text-[#1f1f1f]">11 weeks</span>
+              <span className="text-sm text-[#6b6b6b]">Total</span>
             </div>
           </div>
 
@@ -117,12 +117,12 @@ export function SolutionsEducation() {
               key={i}
               className={`absolute ${step.position} flex items-center gap-2 rounded-full bg-white px-3 py-2 shadow-md`}
             >
-              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#f4e04d] text-xs">
+              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#f4e04d] text-sm">
                 ↗
               </span>
               <div className="leading-tight">
-                <p className="text-[11px] text-[#6b6b6b]">{step.week}</p>
-                <p className="text-xs font-semibold text-[#1f1f1f]">{step.label}</p>
+                <p className="text-xs text-[#6b6b6b]">{step.week}</p>
+                <p className="text-sm font-semibold text-[#1f1f1f]">{step.label}</p>
               </div>
             </div>
           ))}

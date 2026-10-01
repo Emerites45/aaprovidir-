@@ -14,6 +14,7 @@ const CURVE_DOTS = [
 export function SolutionsHeroAnimated() {
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const node = sectionRef.current;
@@ -31,6 +32,15 @@ export function SolutionsHeroAnimated() {
 
     observer.observe(node);
     return () => observer.disconnect();
+  }, []);
+
+  // Détecte les petits écrans (< 768px, équivalent de "md" dans Tailwind)
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
   }, []);
 
   return (
@@ -74,11 +84,12 @@ export function SolutionsHeroAnimated() {
         ))}
       </div>
 
-      {/* Courbe de croissance (SVG en overlay) */}
+      {/* Courbe de croissance — UN SEUL SVG pour toutes les tailles d'écran */}
       <svg
         viewBox="0 0 1160 690"
-        className="absolute inset-0 z-8 h-full w-full pointer-events-none"
-        preserveAspectRatio="xMidYMid slice"
+        aria-hidden="true"
+        preserveAspectRatio={isMobile ? "xMidYMid meet" : "xMidYMid slice"}
+        className="absolute inset-x-0 top-[42%] z-8 h-auto w-full pointer-events-none md:top-0 md:bottom-0 md:h-full"
       >
         <path
           d="M100,460 C250,440 300,400 350,395 S500,370 575,362 C650,350 700,260 805,213 S950,185 1030,178"
@@ -114,12 +125,12 @@ export function SolutionsHeroAnimated() {
             alt="Épis de maïs"
             width={580}
             height={580}
-            className="h-auto w-[140px] object-contain md:w-[450px] drop-shadow-xl"
+            className="h-auto w-[300px] object-contain sm:w-[380px] md:w-[450px] drop-shadow-xl"
           />
         </div>
       </div>
 
-     {/* L'homme — posé sur le champ, apparaît en fondu puis respire légèrement */}
+      {/* L'homme — posé sur le champ, apparaît en fondu puis respire légèrement */}
       <div
         className={`absolute inset-x-0 bottom-0 z-10 flex justify-center ${styles.man} ${
           isVisible ? styles.manVisible : ""
@@ -132,7 +143,7 @@ export function SolutionsHeroAnimated() {
             width={520}
             height={1000}
             quality={90}
-            className="h-auto w-[320px] object-contain md:w-[420px] drop-shadow-2xl"
+            className="h-auto w-[min(105vw,440px)] object-contain md:w-[420px] drop-shadow-2xl"
             priority
           />
         </div>

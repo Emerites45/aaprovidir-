@@ -16,17 +16,22 @@ const CARDS: InfoCard[] = [
   { id: "age-biologique", title: "Âge biologique", value: "41", valueLabel: "ans", items: ["3 ans de moins que l'âge réel"], accent: "#a3e635" },
   { id: "sommeil", title: "Sommeil", items: ["Qualité du sommeil", "Récupération"], accent: "#60a5fa" },
   { id: "habitudes", title: "Habitudes de vie", items: ["Activité physique", "Hydratation"], accent: "#fb923c" },
+  
 ];
 
 // Ordre gauche -> droite. left/bottom/height en % de la section.
 // Plus "bottom" est grand, plus la femme paraît loin (donc plus petite).
+// mobile: positions utilisées sur petit écran (null = masquée sur mobile).
 const WOMEN = [
-  { src: "femme1.png", w: 262, h: 451, left: 12, bottom: 4,  height: 78 },
-  { src: "femme2.png", w: 207, h: 493, left: 32, bottom: -5, height: 81 },
-  { src: "femme3.png", w: 213, h: 443, left: 67, bottom: 25, height: 68 },
-  { src: "femme4.png", w: 163, h: 335, left: 58, bottom: 0,  height: 59 },
-  { src: "femme5.png", w: 260, h: 484, left: 95, bottom: 0,  height: 83 },
+  { src: "femme1.png", w: 262, h: 451, left: 12, bottom: 4,  height: 78, mobile: null },
+  { src: "femme2.png", w: 207, h: 493, left: 32, bottom: -5, height: 81, mobile: { left: 30, bottom: -3, height: 78 } },
+  { src: "femme3.png", w: 213, h: 443, left: 67, bottom: 25, height: 68, mobile: { left: 85, bottom: 25,  height: 72 } },
+  { src: "femme4.png", w: 163, h: 335, left: 58, bottom: 0,  height: 59, mobile: null },
+  { src: "femme5.png", w: 260, h: 484, left: 95, bottom: 0,  height: 83, mobile: null },
 ];
+
+// Hauteur de chaque carte (en % de la section), en alternance pour casser l'alignement
+const CARD_TOPS = [30, 46, 34, 50, 28, 44, 36, 48];
 
 function Card({ card }: { card: InfoCard }) {
   return (
@@ -65,10 +70,56 @@ function Card({ card }: { card: InfoCard }) {
 
 export function SolutionsFemmeAuChamp() {
   const total = CARDS.length;
-  const duration = 32;
+  const duration = 70; // plus grand = plus lent (avant : 32s)
 
   return (
     <section className="relative isolate overflow-hidden">
+      <style>{`
+        .femme {
+          left: var(--m-left);
+          bottom: var(--m-bottom);
+          height: var(--m-height);
+        }
+        @media (min-width: 768px) {
+          .femme {
+            left: var(--d-left);
+            bottom: var(--d-bottom);
+            height: var(--d-height);
+          }
+        }
+
+        /* Cartes : défilement de droite à gauche, en arc, avec perspective 3D.
+           Entrée : tournées vers le centre -> milieu : à plat -> sortie : tournées de l'autre côté */
+        .cards-stage {
+          perspective: 1400px;
+          perspective-origin: 50% 50%;
+        }
+        .card-arc {
+          left: 0;
+          will-change: transform;
+          transform-style: preserve-3d;
+          animation-name: cards-arc;
+          animation-timing-function: linear;
+          animation-iteration-count: infinite;
+        }
+        @keyframes cards-arc {
+          0% {
+            transform: translateX(100vw) translateY(50px) rotateY(-40deg) rotateZ(3deg);
+          }
+          50% {
+            transform: translateX(calc(50vw - 100px)) translateY(-10px) rotateY(0deg) rotateZ(0deg);
+          }
+          100% {
+            transform: translateX(-260px) translateY(50px) rotateY(40deg) rotateZ(-3deg);
+          }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .card-arc {
+            animation-duration: 140s !important;
+          }
+        }
+      `}</style>
+
       <img
         src="/images/solution/champ.jpeg"
         alt="Champ de légumes"
@@ -76,39 +127,48 @@ export function SolutionsFemmeAuChamp() {
       />
 
       {/* Femmes : placées individuellement pour créer de la profondeur */}
-
       <div className="pointer-events-none absolute inset-0 z-30" aria-hidden="true">
-        {WOMEN.map((f) => (
-          <div
-            key={f.src}
-            className="absolute"
-            style={{
-              left: `${f.left}%`,
-              bottom: `${f.bottom}%`,
-              height: `${f.height}%`,
-              aspectRatio: `${f.w} / ${f.h}`,
-              transform: "translateX(-50%)",
-            }}
-          >
-            {/* ombre au sol */}
-            <div className="absolute bottom-0 left-1/2 h-[5%] w-[85%] -translate-x-1/2 translate-y-1/2 rounded-full bg-black/45 blur-[6px]" />
-            <img
-              src={`/images/solution/${f.src}`}
-              alt=""
-              className="relative h-full w-full object-contain"
-              style={{ filter: "saturate(0.92) brightness(0.96)" }}
-            />
-          </div>
-        ))}
+        {WOMEN.map((f) => {
+          const m = f.mobile ?? { left: f.left, bottom: f.bottom, height: f.height };
+          return (
+            <div
+              key={f.src}
+              className={`femme absolute ${f.mobile ? "" : "hidden md:block"}`}
+              style={
+                {
+                  "--d-left": `${f.left}%`,
+                  "--d-bottom": `${f.bottom}%`,
+                  "--d-height": `${f.height}%`,
+                  "--m-left": `${m.left}%`,
+                  "--m-bottom": `${m.bottom}%`,
+                  "--m-height": `${m.height}%`,
+                  aspectRatio: `${f.w} / ${f.h}`,
+                  transform: "translateX(-50%)",
+                } as React.CSSProperties
+              }
+            >
+              {/* ombre au sol */}
+              <div className="absolute bottom-0 left-1/2 h-[5%] w-[85%] -translate-x-1/2 translate-y-1/2 rounded-full bg-black/45 blur-[6px]" />
+              <img
+                src={`/images/solution/${f.src}`}
+                alt=""
+                className="relative h-full w-full object-contain"
+                style={{ filter: "saturate(0.92) brightness(0.96)" }}
+              />
+            </div>
+          );
+        })}
       </div>
 
-      <div className="absolute inset-0 z-20 hidden md:block">
+      {/* Cartes en perspective, derrière les femmes */}
+      <div className="cards-stage pointer-events-none absolute inset-0 z-20 hidden overflow-hidden md:block">
         {CARDS.map((card, i) => (
           <div
             key={card.id}
-            className="absolute"
+            className="card-arc absolute"
             style={{
-              animation: `diagonal-fall ${duration}s linear infinite`,
+              top: `${CARD_TOPS[i % CARD_TOPS.length]}%`,
+              animationDuration: `${duration}s`,
               animationDelay: `${-(duration / total) * i}s`,
             }}
           >
@@ -118,8 +178,8 @@ export function SolutionsFemmeAuChamp() {
       </div>
 
       <div className="absolute inset-x-0 bottom-6 z-30 flex justify-center px-6">
-        
-        <a href="#"
+        <a
+          href="#"
           className="inline-block rounded-full bg-[#4a6a1f] px-8 py-3 font-bold text-white shadow-md transition hover:bg-[#3d5819]"
         >
           Ce que nous apportons

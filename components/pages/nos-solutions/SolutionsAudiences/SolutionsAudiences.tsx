@@ -22,10 +22,13 @@ const SLIDES = [
   },
 ];
 
+const SWIPE_THRESHOLD = 50; // distance minimale (px) pour déclencher un swipe
+
 export function SolutionsAudiences() {
   const [active, setActive] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const touchStartX = useRef<number | null>(null);
 
   useEffect(() => {
     const el = sectionRef.current;
@@ -44,6 +47,23 @@ export function SolutionsAudiences() {
     observer.observe(el);
     return () => observer.disconnect();
   }, []);
+
+  const goPrev = () => setActive((i) => Math.max(0, i - 1));
+  const goNext = () => setActive((i) => Math.min(SLIDES.length - 1, i + 1));
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const diff = touchStartX.current - e.changedTouches[0].clientX;
+    touchStartX.current = null;
+
+    if (Math.abs(diff) < SWIPE_THRESHOLD) return;
+    if (diff > 0) goNext(); // glissé vers la gauche → carte suivante
+    else goPrev(); // glissé vers la droite → carte précédente
+  };
 
   return (
     <section ref={sectionRef} className={styles.section}>
@@ -99,7 +119,7 @@ export function SolutionsAudiences() {
               className={cn(styles.arrow, "transition-transform active:scale-90")}
               disabled={active === 0}
               aria-label="Précédent"
-              onClick={() => setActive((i) => Math.max(0, i - 1))}
+              onClick={goPrev}
             >
               <i className="bi bi-arrow-left" />
             </button>
@@ -107,7 +127,7 @@ export function SolutionsAudiences() {
               className={cn(styles.arrow, "transition-transform active:scale-90")}
               disabled={active === SLIDES.length - 1}
               aria-label="Suivant"
-              onClick={() => setActive((i) => Math.min(SLIDES.length - 1, i + 1))}
+              onClick={goNext}
             >
               <i className="bi bi-arrow-right" />
             </button>
@@ -121,6 +141,8 @@ export function SolutionsAudiences() {
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? "translateX(0)" : "translateX(30px)"
           }}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
         >
           {SLIDES.map((slide, i) => (
             <button

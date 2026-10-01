@@ -86,7 +86,7 @@ export function SolutionsMiseEnMarche() {
           </h2>
 
           {/* Image remontée sous le titre, avec la ligne 2 posée dessus */}
-          <div className="relative w-full -mt-4 md:-mt-0 overflow-hidden">
+          <div className="relative w-full -mt-1 md:-mt-0 overflow-hidden">
             <img
               src={image.src}
               alt={image.alt}
