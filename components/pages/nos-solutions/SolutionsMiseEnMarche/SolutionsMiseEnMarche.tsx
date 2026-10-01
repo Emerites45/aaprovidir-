@@ -8,6 +8,11 @@ import { MISE_EN_MARCHE_CONTENT, PRODUCTS } from "./content";
 const { heading, topLeft, topRight, bottomLeftTitle, bottomRightText, cta, ctaHref, footerNote, image } =
   MISE_EN_MARCHE_CONTENT;
 
+const HIGHLIGHTED_PRODUCTS = ["Fruits", "Noix", "Vivres", "Maraîchage", "PFNL"];
+const PRODUCT_ROWS: string[][] = Array.from({ length: 4 }, (_, i) =>
+  PRODUCTS.filter((_, index) => index % 4 === i)
+);
+
 function useInView<T extends HTMLElement>(threshold = 0.15) {
   const ref = useRef<T | null>(null);
   const [inView, setInView] = useState(false);
@@ -49,7 +54,7 @@ export function SolutionsMiseEnMarche() {
       {/* Halo lumineux d'arrière-plan pour donner de la profondeur */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-[#5f7600]/10 blur-[120px] pointer-events-none rounded-full" />
 
-      <div className="relative z-10 mx-auto grid max-w-6xl grid-cols-1 gap-4 md:grid-cols-3">
+      <div className="relative z-10 mx-auto grid max-w-7xl grid-cols-1 gap-4 md:grid-cols-[1fr_1.5fr_1fr]">
         {/* Haut gauche */}
         <div
           className="relative overflow-hidden flex flex-col justify-center bg-[#5f7600] p-8 text-center transition-all duration-500 ease-out hover:-translate-y-1.5 hover:bg-[#6d8700] hover:shadow-xl md:text-left rounded-2xl md:rounded-none md:rounded-l-2xl group/card"
@@ -63,27 +68,25 @@ export function SolutionsMiseEnMarche() {
 
         {/* Centre — image en fond, occupe les deux lignes */}
         <div
-          className="group relative flex flex-col items-center overflow-hidden bg-[#5f7600] transition-all duration-500 hover:bg-[#6d8700] hover:shadow-2xl md:row-span-2 rounded-2xl md:rounded-none sr-center-card"
+          className="group relative flex flex-col items-center overflow-hidden bg-[#5f7600] transition-all duration-500 hover:bg-[#6d8700] hover:shadow-2xl md:row-span-2 rounded-2xl md:rounded-none sr-center-card min-h-[500px] md:min-h-[600px]"
           style={enter(0.15)}
         >
           {/* Reflet lumineux subtil qui traverse la carte centrale */}
           <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/10 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
 
+          {/* Ligne 1 : reste posée sur le fond vert */}
           <h2
-            className="pt-8 text-center text-4xl font-extrabold leading-[1.05] text-white transition-transform duration-500 group-hover:scale-[1.02] md:pt-12 md:text-5xl relative z-10 px-4"
+            className="relative z-20 pt-8 text-center text-4xl font-extrabold leading-[1.05] text-white transition-transform duration-500 group-hover:scale-[1.02] md:pt-12 md:text-5xl px-4"
             style={{
               opacity: inView ? undefined : 0,
               animation: inView ? "sr-fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both" : undefined,
             }}
           >
             {heading.line1}
-            <br />
-            <span className="bg-[#5f7600] transition-colors duration-300 group-hover:bg-[#6d8700]">
-              {heading.line2}
-            </span>
           </h2>
 
-          <div className="relative w-full mt-auto overflow-hidden">
+          {/* Image remontée sous le titre, avec la ligne 2 posée dessus */}
+          <div className="relative w-full -mt-1 md:-mt-0 overflow-hidden">
             <img
               src={image.src}
               alt={image.alt}
@@ -93,6 +96,17 @@ export function SolutionsMiseEnMarche() {
                 animation: inView ? "sr-image-enter 1s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both" : undefined,
               }}
             />
+
+            {/* Ligne 2 : superposée directement sur l'image */}
+            <span
+              className="pointer-events-none absolute left-0 right-0 top-2 z-10 text-center text-4xl font-extrabold leading-[1.05] text-[#5f7600] transition-transform duration-500 group-hover:scale-[1.02] md:top-4 md:text-5xl px-4"
+              style={{
+                opacity: inView ? undefined : 0,
+                animation: inView ? "sr-fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both" : undefined,
+              }}
+            >
+              {heading.line2}
+            </span>
           </div>
         </div>
 
@@ -108,6 +122,7 @@ export function SolutionsMiseEnMarche() {
         </div>
 
         {/* Bas gauche */}
+        {/* Bas gauche */}
         <div
           className="group/card relative overflow-hidden flex flex-col justify-center gap-4 bg-[#5f7600] p-8 text-center transition-all duration-500 ease-out hover:-translate-y-1.5 hover:bg-[#6d8700] hover:shadow-xl md:text-left rounded-2xl md:rounded-none md:rounded-bl-2xl"
           style={enter(0.25)}
@@ -115,9 +130,36 @@ export function SolutionsMiseEnMarche() {
           <p className="text-lg font-semibold text-white transition-transform duration-300 group-hover/card:translate-x-1">
             {bottomLeftTitle}
           </p>
-          <p className="text-sm leading-relaxed text-white/80 transition-colors duration-300 group-hover/card:text-white">
-            {PRODUCTS.join(", ")}.
-          </p>
+
+          <div className="relative z-10 flex flex-col gap-2">
+            {PRODUCT_ROWS.map((row, rowIndex) => (
+              <div
+                key={rowIndex}
+                className="overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]"
+              >
+                <div
+                  className="flex w-max flex-nowrap gap-2 sr-marquee"
+                  style={{
+                    animationDuration: `${18 + rowIndex * 4}s`,
+                    animationDirection: rowIndex % 2 === 0 ? "normal" : "reverse",
+                  }}
+                >
+                  {[...row, ...row].map((product, index) => (
+                    <span
+                      key={`${product}-${index}`}
+                      className={
+                        index % row.length === 0
+                          ? "shrink-0 whitespace-nowrap rounded-full border border-[#edfac1] bg-white/10 px-3 py-1 text-xs font-semibold text-[#edfac1] transition-colors duration-300 group-hover/card:bg-white/15"
+                          : "shrink-0 whitespace-nowrap px-1 text-xs text-white/70 transition-colors duration-300 group-hover/card:text-white/90"
+                      }
+                    >
+                      {product}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Bas droite */}
@@ -217,6 +259,23 @@ export function SolutionsMiseEnMarche() {
             opacity: 1 !important;
           }
         }
+
+        .sr-marquee 
+        {
+          animation-name: sr-marquee-scroll;
+          animation-timing-function: linear;
+          animation-iteration-count: infinite;
+        }
+        @keyframes sr-marquee-scroll 
+        {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+
       `}</style>
     </section>
   );

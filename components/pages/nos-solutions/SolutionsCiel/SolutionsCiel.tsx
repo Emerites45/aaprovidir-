@@ -86,18 +86,20 @@ export function SolutionCiel() {
             <div className={`sc-sheen ${inView ? "sc-sheen-on" : ""}`} aria-hidden="true" />
           </div>
 
-          <div className="absolute inset-y-0 right-0 flex w-1/2 flex-col justify-center gap-6 px-8 py-10 md:py-16">
+          {/* Petits et moyens écrans : panneau bleu sous l'image.
+              Grands écrans (lg) : liste posée sur l'image, à droite. */}
+          <div className="relative flex flex-col justify-center gap-6 bg-[linear-gradient(90deg,#b6d4ff,#0249b2)] px-6 py-8 md:px-10 lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2 lg:bg-none lg:px-8 lg:py-16">
             {CHECKLIST_ITEMS.map((text, i) => (
               <div
                 key={i}
-                className={`sc-item flex items-center gap-4 border-b border-black/15 pb-6 last:border-b-0 last:pb-0 ${
+                className={`sc-item flex items-center gap-4 border-b border-white/25 pb-6 last:border-b-0 last:pb-0 lg:border-black/15 ${
                   inView ? "sc-item-in" : ""
                 }`}
                 style={{ transitionDelay: inView ? `${220 + i * 140}ms` : "0ms" }}
               >
                 <svg
                   viewBox="0 0 24 24"
-                  className="sc-check h-7 w-7 shrink-0 text-[#f4c430]"
+                  className="sc-check h-7 w-7 shrink-0 text-[#edfac1] drop-shadow-[0_1px_2px_rgba(0,0,0,0.35)]"
                   fill="none"
                   stroke="currentColor"
                   strokeWidth="2"
@@ -114,7 +116,7 @@ export function SolutionCiel() {
                   />
                 </svg>
                 <p
-                  className="sc-text text-sm font-medium text-[#1f1f1f] md:text-base"
+                  className="sc-text text-sm font-medium text-black md:text-base lg:text-[#1f1f1f]"
                   style={{ animationDelay: inView ? `${900 + i * 220}ms` : "0ms" }}
                 >
                   {text}

@@ -22,10 +22,13 @@ const SLIDES = [
   },
 ];
 
+const SWIPE_THRESHOLD = 50; // distance minimale (px) pour déclencher un swipe
+
 export function SolutionsAudiences() {
   const [active, setActive] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const touchStartX = useRef<number | null>(null);
 
   useEffect(() => {
     const el = sectionRef.current;
@@ -44,6 +47,23 @@ export function SolutionsAudiences() {
     observer.observe(el);
     return () => observer.disconnect();
   }, []);
+
+  const goPrev = () => setActive((i) => Math.max(0, i - 1));
+  const goNext = () => setActive((i) => Math.min(SLIDES.length - 1, i + 1));
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const diff = touchStartX.current - e.changedTouches[0].clientX;
+    touchStartX.current = null;
+
+    if (Math.abs(diff) < SWIPE_THRESHOLD) return;
+    if (diff > 0) goNext(); // glissé vers la gauche → carte suivante
+    else goPrev(); // glissé vers la droite → carte précédente
+  };
 
   return (
     <section ref={sectionRef} className={styles.section}>
@@ -71,7 +91,7 @@ export function SolutionsAudiences() {
             </p>
 
             {/* Texte dynamique lié à la slide active avec transition fluide */}
-            <div className="min-h-[70px] border-l-4 border-[#ffca3c] pl-4 py-1 mb-8 bg-amber-50/50 rounded-r-xl transition-all duration-500">
+            <div className="min-h-[70px]  pl-4 py-1 mb-8 bg-amber-50/50 rounded-r-xl transition-all duration-500">
               <span className="block text-xs font-bold uppercase tracking-wider text-[#0b438c] mb-1">
                 Focus : {SLIDES[active].title}
               </span>
@@ -81,7 +101,8 @@ export function SolutionsAudiences() {
               >
                 {SLIDES[active].text}
               </p>
-            </div>
+            </div> 
+            
           </div>
 
           <div>
@@ -89,7 +110,7 @@ export function SolutionsAudiences() {
               href="#"
               className="mt-2 inline-block rounded-full bg-[#ffca3c] px-6 py-4 font-body text-sm font-bold text-white text-center no-underline shadow-[0_4px_14px_rgba(255,202,60,0.45)] transition-all duration-300 hover:bg-[#f0b92c] hover:scale-105 active:scale-95"
             >
-              Je découvre la solution adaptée à mon métier
+              Cliquez sur votre profil
             </a>
           </div>
 
@@ -98,7 +119,7 @@ export function SolutionsAudiences() {
               className={cn(styles.arrow, "transition-transform active:scale-90")}
               disabled={active === 0}
               aria-label="Précédent"
-              onClick={() => setActive((i) => Math.max(0, i - 1))}
+              onClick={goPrev}
             >
               <i className="bi bi-arrow-left" />
             </button>
@@ -106,7 +127,7 @@ export function SolutionsAudiences() {
               className={cn(styles.arrow, "transition-transform active:scale-90")}
               disabled={active === SLIDES.length - 1}
               aria-label="Suivant"
-              onClick={() => setActive((i) => Math.min(SLIDES.length - 1, i + 1))}
+              onClick={goNext}
             >
               <i className="bi bi-arrow-right" />
             </button>
@@ -120,6 +141,8 @@ export function SolutionsAudiences() {
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? "translateX(0)" : "translateX(30px)"
           }}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
         >
           {SLIDES.map((slide, i) => (
             <button

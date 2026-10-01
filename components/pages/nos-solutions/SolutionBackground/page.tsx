@@ -66,11 +66,11 @@ export function SolutionsBackgroundRacine() {
       >
         {/* Left card — récolte transformée */}
         <div
-          className={`sr-card sr-card-left rounded-2xl bg-[#e7f2b8] p-8 shadow-lg ${
+          className={`sr-card sr-card-left rounded-3xl bg-[#e7f2b8] p-8 shadow-lg ${
             inView ? "sr-card-in" : ""
           }`}
         >
-          <h3 className="text-center text-2xl font-bold text-[#3c4a52]">
+          <h3 className="text-center text-3xl font-bold text-[#3c4a52]">
             Votre récolte vaut plus
           </h3>
 
@@ -84,7 +84,7 @@ export function SolutionsBackgroundRacine() {
 
           <div className="mt-4 flex items-center justify-center gap-3">
             <img
-              src="/images/solution/cacao.jpeg"
+              src="/images/solution/cacao_sans_fond.png"
               alt=""
               aria-hidden="true"
               className={`sr-ingredient sr-ingredient-a h-25 w-25 object-contain ${
@@ -97,7 +97,7 @@ export function SolutionsBackgroundRacine() {
               transformez.
             </p>
             <img
-              src="/images/solution/poudre.jpeg"
+              src="/images/solution/poudre_sans_fond.png"
               alt=""
               aria-hidden="true"
               className={`sr-ingredient sr-ingredient-b h-30 w-30 object-contain ${
@@ -132,7 +132,7 @@ export function SolutionsBackgroundRacine() {
               inView ? "sr-card-in" : ""
             }`}
           >
-            <h3 className="text-center text-2xl font-bold text-[#7a9a3a]">
+            <h3 className="text-center text-3xl font-bold text-[#7a9a3a]">
               Notre avantage
             </h3>
             <p className="mt-4 text-center text-[15px] font-semibold leading-relaxed text-[#1a1a1a]">
